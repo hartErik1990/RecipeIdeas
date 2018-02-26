@@ -10,8 +10,13 @@ import Foundation
 
 class RecipeController {
     
+    // MARK: - Properties
     static let shared = RecipeController()
     
     let baseURL = URL(string: "https://api.edamam.com/search")!
+    
+    func fetchResults(with searchTerm: String, completion: @escaping () -> Void) {
+        
+    }
     
 }
