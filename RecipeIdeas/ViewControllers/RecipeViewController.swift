@@ -10,6 +10,20 @@ import UIKit
 
 class RecipeViewController: UIViewController {
 
+    // MARK: - Properties
+    var hit: Hit?
+    
+    @IBOutlet weak var recipeImageView: UIImageView!
+    @IBOutlet weak var ingredientsLabel: UILabel!
+    @IBOutlet weak var directionButtonLabel: UIButton!
+    @IBOutlet weak var titleLabel: UINavigationItem!
+    
+//    func updateViews(recipe: Recipe, ingredients: Ingredient) {
+//        ingredientsLabel.text = ingredients.text
+//        titleLabel.title = recipe.title
+//        directionButtonLabel.titleLabel?.text = recipe.url
+//    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -20,16 +34,22 @@ class RecipeViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

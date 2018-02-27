@@ -10,15 +10,32 @@ import UIKit
 
 class RecipeTableViewCell: UITableViewCell {
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    
+    var hit: Hit? {
+        didSet{
+            updateView()
+        }
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+   
+    var displayImage: UIImage? {
+        didSet{
+        updateView()
+        }
     }
-
+    
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var displayImageView: UIImageView!
+    
+    func updateView() {
+        guard let hit = hit else {return}
+        //guard titleLabel.text == titleLabel.text else {return}
+        
+        if let displayImage = displayImage {
+            displayImageView.image = displayImage
+        } else {
+            displayImageView.image = nil
+        }
+        titleLabel.text = hit.recipe.title
+        displayImageView.addSubview(titleLabel)
+    }
 }

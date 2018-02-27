@@ -16,7 +16,6 @@
 		44254E642044C811005B45BC /* RecipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44254E632044C811005B45BC /* RecipeViewController.swift */; };
 		44254E682044C8FF005B45BC /* RecipeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44254E672044C8FF005B45BC /* RecipeController.swift */; };
 		44254E6C2044CB25005B45BC /* RecipeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44254E6B2044CB25005B45BC /* RecipeTableViewCell.swift */; };
-		44254E702044CD0B005B45BC /* NetWorkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44254E6F2044CD0B005B45BC /* NetWorkController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,7 +30,6 @@
 		44254E632044C811005B45BC /* RecipeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeViewController.swift; sourceTree = "<group>"; };
 		44254E672044C8FF005B45BC /* RecipeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeController.swift; sourceTree = "<group>"; };
 		44254E6B2044CB25005B45BC /* RecipeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeTableViewCell.swift; sourceTree = "<group>"; };
-		44254E6F2044CD0B005B45BC /* NetWorkController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetWorkController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,7 +94,6 @@
 			isa = PBXGroup;
 			children = (
 				44254E672044C8FF005B45BC /* RecipeController.swift */,
-				44254E6F2044CD0B005B45BC /* NetWorkController.swift */,
 			);
 			path = ModelControllers;
 			sourceTree = "<group>";
@@ -197,7 +194,6 @@
 				44254E6C2044CB25005B45BC /* RecipeTableViewCell.swift in Sources */,
 				44254E682044C8FF005B45BC /* RecipeController.swift in Sources */,
 				44254E4D2044C30A005B45BC /* AppDelegate.swift in Sources */,
-				44254E702044CD0B005B45BC /* NetWorkController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
