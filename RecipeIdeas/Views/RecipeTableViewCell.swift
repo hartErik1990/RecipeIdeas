@@ -28,7 +28,6 @@ class RecipeTableViewCell: UITableViewCell {
     
     func updateView() {
         guard let hit = hit else {return}
-        //guard titleLabel.text == titleLabel.text else {return}
         
         if let displayImage = displayImage {
             displayImageView.image = displayImage

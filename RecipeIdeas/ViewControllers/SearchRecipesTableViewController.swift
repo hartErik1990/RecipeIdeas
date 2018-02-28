@@ -65,6 +65,10 @@ class SearchRecipesTableViewController: UITableViewController, UISearchBarDelega
         return cell
     }
 
+    // MARK: - TableView Row Height
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 220
+    }
     // MARK: - Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -72,6 +76,7 @@ class SearchRecipesTableViewController: UITableViewController, UISearchBarDelega
             if let destination = segue.destination as? RecipeViewController, let indexPath = tableView.indexPathForSelectedRow {
                 let hit = RecipeController.shared.hits[indexPath.row]
                 destination.hit = hit
+                
             }
         }
     }

@@ -41,6 +41,7 @@ struct Recipe: Decodable {
     let source: String
     let url: String
     let ingredients: [Ingredient]
+    let ingredientLines: [String]
     
     enum CodingKeys: String, CodingKey {
         case title = "label"
@@ -48,6 +49,7 @@ struct Recipe: Decodable {
         case source = "source"
         case url = "url"
         case ingredients = "ingredients"
+        case ingredientLines = "ingredientLines"
     
     }
 }
