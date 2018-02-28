@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SearchRecipesTableViewController: UITableViewController, UISearchBarDelegate {
+final class SearchRecipesTableViewController: UITableViewController, UISearchBarDelegate {
 
     @IBOutlet weak var searchBarTextField: UISearchBar!
     
@@ -17,7 +17,6 @@ class SearchRecipesTableViewController: UITableViewController, UISearchBarDelega
         searchBar.resignFirstResponder()
         RecipeController.shared.fetchResults(with: searchTerm) {
             DispatchQueue.main.async { [weak self] in
-                self?.title = "\(searchTerm)"
                 self?.tableView.reloadData()
             }
         }
@@ -45,7 +44,6 @@ class SearchRecipesTableViewController: UITableViewController, UISearchBarDelega
         return RecipeController.shared.hits.count
     }
 
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "resultCell", for: indexPath) as? RecipeTableViewCell ?? RecipeTableViewCell()
 

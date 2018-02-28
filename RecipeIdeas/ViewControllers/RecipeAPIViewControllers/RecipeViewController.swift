@@ -8,24 +8,20 @@
 
 import UIKit
 
-class RecipeViewController: UIViewController {
+final class RecipeViewController: UIViewController {
 
     // MARK: - Properties
     var hit: Hit?
-    var newImage: UIImage?
-    var ingredients: Ingredient?
     @IBOutlet weak var recipeImageView: UIImageView!
-  
     @IBOutlet weak var ingredientsLabel: UITextView!
     @IBOutlet weak var directionButtonLabel: UIButton!
     @IBOutlet weak var titleLabel: UINavigationItem!
-    
-    @IBOutlet weak var scrollView: UIScrollView!
     
     func updateViews() {
         guard let hit = hit else {return}
         titleLabel.title = hit.recipe.title
         directionButtonLabel.titleLabel?.text = hit.recipe.url
+        print(directionButtonLabel.titleLabel?.text ?? "")
         var formattedIngredientLines = ""
         for line in hit.recipe.ingredientLines {
             formattedIngredientLines += "• " + line + "\n"
@@ -40,7 +36,6 @@ class RecipeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         updateViews()
-        scrollView.contentSize.height = 500
     }
 
     override func didReceiveMemoryWarning() {
@@ -48,6 +43,13 @@ class RecipeViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    @IBAction func directionsButtonTapped(_ sender: Any) {
+        if let viewController = storyboard!.instantiateViewController(withIdentifier: "WebViewController") as? WebViewController {
+        viewController.urlString = hit?.recipe.url
+        show(viewController, sender: self)
+        }
+    }
+    
 }
 
 

@@ -13,11 +13,11 @@ class RecipeController {
     // MARK: - Properties
     static let shared = RecipeController()
     
-    let baseURL = URL(string: "https://api.edamam.com/search")!
+    private let baseURL = URL(string: "https://api.edamam.com/search")!
     
-    let appID = "8983588f"
+    private let appID = "8983588f"
     
-    let appKey = "a8a1b901fb9f1c1c426dc685606e2043"
+    private let appKey = "a8a1b901fb9f1c1c426dc685606e2043"
     
     var hits = [Hit]()
     

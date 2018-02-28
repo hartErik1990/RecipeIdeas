@@ -25,6 +25,7 @@ class RecipeTableViewCell: UITableViewCell {
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var displayImageView: UIImageView!
+    @IBOutlet weak var ingredientsLabel: UILabel!
     
     func updateView() {
         guard let hit = hit else {return}
@@ -35,6 +36,7 @@ class RecipeTableViewCell: UITableViewCell {
             displayImageView.image = nil
         }
         titleLabel.text = hit.recipe.title
+        ingredientsLabel.text = "Ingredients: \(hit.recipe.ingredients.count)"
         displayImageView.addSubview(titleLabel)
     }
 }
