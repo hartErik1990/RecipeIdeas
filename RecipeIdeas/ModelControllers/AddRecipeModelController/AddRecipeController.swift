@@ -6,7 +6,7 @@
 //  Copyright © 2018 Erik HARTLEY. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class AddRecipeController {
     
@@ -14,20 +14,20 @@ class AddRecipeController {
     static let shared = AddRecipeController()
     
     var addRecipes = [AddRecipe]()
-    
-    func addRecipe(withTitle title: String, ingredients: String, directions: String, imageData: Data) {
-        AddRecipe(title: title, ingredients: ingredients, directions: directions, imageData: imageData)
+
+    // MARK: - CRUD
+    func addRecipe(withTitle title: String, ingredients: String, directions: String) {
+        AddRecipe(title: title, ingredients: ingredients, directions: directions)
         saveToPersistentStore()
     }
     func delete(recipe: AddRecipe) {
         CoreDataStack.context.delete(recipe)
         saveToPersistentStore()
     }
-    func updateRecipe(with recipe: AddRecipe, title: String, ingredients: String, directions: String, imageData: Data) {
+    func updateRecipe(with recipe: AddRecipe, title: String, ingredients: String, directions: String) {
         recipe.title = title
         recipe.ingredients = ingredients
         recipe.directions = directions
-        recipe.imageData = imageData
         saveToPersistentStore()
     }
     

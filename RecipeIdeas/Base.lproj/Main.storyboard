@@ -42,9 +42,9 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ingredients:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZRT-ls-5tc">
-                                            <rect key="frame" x="16" y="181" width="126" height="21"/>
+                                            <rect key="frame" x="16" y="181" width="111" height="21"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="126" id="4YF-Fo-CG9"/>
+                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="111" id="c53-vm-3bk"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
@@ -52,13 +52,14 @@
                                         </label>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstItem="ZRT-ls-5tc" firstAttribute="top" secondItem="Yax-vD-Xfo" secondAttribute="bottom" constant="8" symbolic="YES" id="D8g-ft-TR4"/>
                                         <constraint firstAttribute="trailing" secondItem="ypd-qO-EqV" secondAttribute="trailing" constant="8" id="HIi-2v-LpN"/>
                                         <constraint firstAttribute="bottom" secondItem="ypd-qO-EqV" secondAttribute="bottom" constant="8" id="JRb-PK-mI2"/>
-                                        <constraint firstItem="Yax-vD-Xfo" firstAttribute="leading" secondItem="ZRT-ls-5tc" secondAttribute="leading" id="SdP-qL-VTd"/>
                                         <constraint firstItem="ypd-qO-EqV" firstAttribute="top" secondItem="d4o-9K-cRJ" secondAttribute="top" constant="8" id="VkZ-Kt-HSU"/>
-                                        <constraint firstItem="ZRT-ls-5tc" firstAttribute="top" secondItem="Yax-vD-Xfo" secondAttribute="bottom" constant="8" symbolic="YES" id="bmQ-YA-evr"/>
+                                        <constraint firstAttribute="trailing" secondItem="ZRT-ls-5tc" secondAttribute="trailing" constant="248" id="XVG-3u-iYw"/>
                                         <constraint firstItem="ypd-qO-EqV" firstAttribute="leading" secondItem="d4o-9K-cRJ" secondAttribute="leading" constant="8" id="jcy-3C-86b"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="ZRT-ls-5tc" secondAttribute="bottom" constant="7" id="p9s-y9-rcq"/>
+                                        <constraint firstItem="ZRT-ls-5tc" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Yax-vD-Xfo" secondAttribute="leading" id="mYn-cC-8VI"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="ZRT-ls-5tc" secondAttribute="bottom" constant="7" id="n8X-Qg-Vug"/>
                                         <constraint firstItem="Yax-vD-Xfo" firstAttribute="leading" secondItem="d4o-9K-cRJ" secondAttribute="leadingMargin" id="ubD-cO-kLg"/>
                                         <constraint firstItem="Yax-vD-Xfo" firstAttribute="centerX" secondItem="ypd-qO-EqV" secondAttribute="centerX" id="ve3-bM-3NU"/>
                                     </constraints>
@@ -218,15 +219,24 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="80" id="a1v-aN-VJh">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="addRecipeCell" textLabel="I1P-0G-zS9" rowHeight="80" style="IBUITableViewCellStyleDefault" id="a1v-aN-VJh">
                                 <rect key="frame" x="0.0" y="28" width="375" height="80"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="a1v-aN-VJh" id="Am4-Ha-Kua">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="79.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="I1P-0G-zS9">
+                                            <rect key="frame" x="16" y="0.0" width="343" height="79.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="46L-gr-Vb7" kind="show" id="dFu-MS-aIt"/>
+                                    <segue destination="46L-gr-Vb7" kind="show" identifier="toAddRecipeDetailVC" id="dFu-MS-aIt"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -251,10 +261,10 @@
             </objects>
             <point key="canvasLocation" x="84" y="874.81259370314854"/>
         </scene>
-        <!--View Controller-->
+        <!--Add Recipe Detail View Controller-->
         <scene sceneID="Ogb-dn-S8t">
             <objects>
-                <viewController id="46L-gr-Vb7" sceneMemberID="viewController">
+                <viewController id="46L-gr-Vb7" customClass="AddRecipeDetailViewController" customModule="RecipeIdeas" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3GL-Xd-nmf">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -305,8 +315,17 @@
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits"/>
                         </textField>
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="gP7-4k-PuZ"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="gP7-4k-PuZ">
+                            <connections>
+                                <action selector="saveButtonTapped:" destination="46L-gr-Vb7" id="7th-OM-dlX"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="directionsTextView" destination="Snn-Xh-YAr" id="hXW-26-vgo"/>
+                        <outlet property="ingredientsTextView" destination="Khi-uO-JCj" id="Fxr-D5-5Qq"/>
+                        <outlet property="titleTextView" destination="JPy-yq-FGB" id="Veb-Xz-pSe"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KWo-3Z-3vg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
