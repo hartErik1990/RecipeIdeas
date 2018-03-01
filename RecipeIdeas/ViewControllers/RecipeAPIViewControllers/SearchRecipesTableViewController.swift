@@ -21,7 +21,10 @@ final class SearchRecipesTableViewController: UITableViewController, UISearchBar
             }
         }
     }
-    
+    func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool {
+        searchBar.resignFirstResponder()
+        return true
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         searchBarTextField.delegate = self

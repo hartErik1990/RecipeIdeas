@@ -12,13 +12,13 @@ class RecipeTableViewCell: UITableViewCell {
 
     // MARK: - Properties
     var hit: Hit? {
-        didSet{
+        didSet {
             updateView()
         }
     }
    
     var displayImage: UIImage? {
-        didSet{
+        didSet {
         updateView()
         }
     }

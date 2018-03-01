@@ -33,14 +33,31 @@ class AddRecipeDetailViewController: ShiftableViewController, UIImagePickerContr
 
     }
  
+    //var strings = [String]()
+    
     func updateViews() {
         guard let addedRecipe = addedRecipe else {return}
         
         titleTextView.text = addedRecipe.title
         directionsTextView.text = addedRecipe.directions
-        ingredientsTextView.text =  addedRecipe.ingredients
+        //let ingredients = addedRecipe.ingredients
+//        guard var lines = ingredients?.components(separatedBy: CharacterSet.newlines) else { return }
+//        let bulletPoint = "O"
+//        for line in lines {
+//            if line.count == 0 {
+//                print(line)
+//                return
+//            } else {
+//
+//                lines.insert(bulletPoint, at: 0)
+//                print(lines)
+//                ingredientsTextView.text = bulletPoint + line
+//            }
+//        }
+        ingredientsTextView.text = addedRecipe.ingredients
+        addRecipeImage.image = UIImage(data: addedRecipe.imageData!)
+        
     }
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -56,12 +73,14 @@ class AddRecipeDetailViewController: ShiftableViewController, UIImagePickerContr
     }
    
     @IBAction func saveButtonTapped(_ sender: Any) {
-        guard let title = titleTextView.text, let ingredients = ingredientsTextView.text, let directions = directionsTextView.text else {return}
+
+        guard let title = titleTextView.text, let ingredients = ingredientsTextView.text, let directions = directionsTextView.text, let imageData = addRecipeImage.image else {return}
+        let image = Data(UIImageJPEGRepresentation(imageData, 0.9)!)
         //For UpdatingViews
         if let addedRecipe = addedRecipe {
-            AddRecipeController.shared.updateRecipe(with: addedRecipe, title: title, ingredients: ingredients, directions: directions)
+            AddRecipeController.shared.updateRecipe(with: addedRecipe, title: title, ingredients: ingredients, directions: directions, imageData: image)
         } else {
-            AddRecipeController.shared.addRecipe(withTitle: title, ingredients: ingredients, directions: directions)
+            AddRecipeController.shared.addRecipe(withTitle: title, ingredients: ingredients, directions: directions, imageData: image)
         }
         navigationController?.popViewController(animated: true)
     }

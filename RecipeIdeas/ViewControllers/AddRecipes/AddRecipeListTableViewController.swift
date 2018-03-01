@@ -34,6 +34,7 @@ class AddRecipeListTableViewController: UITableViewController, NSFetchedResultsC
     
     @IBOutlet weak var addRecipesButton: UIBarButtonItem!
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -60,12 +61,13 @@ class AddRecipeListTableViewController: UITableViewController, NSFetchedResultsC
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "addRecipeCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "addRecipeCell", for: indexPath) as? AddRecipeTableViewCell ?? AddRecipeTableViewCell()
 
         let addedRecipe = fetchedResultsController.object(at: indexPath)
         
         cell.textLabel?.text = addedRecipe.title
-
+        guard let data =  addedRecipe.imageData else {return UITableViewCell()}
+        cell.addRecipeImageview?.image = UIImage(data: data)
         return cell
     }
     

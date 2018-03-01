@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 
 extension AddRecipe {
-    @discardableResult convenience init(title: String, ingredients: String, directions: String, imageData: Data = Data(), context: NSManagedObjectContext = CoreDataStack.context) {
+    @discardableResult convenience init(title: String, ingredients: String, directions: String, imageData: Data, context: NSManagedObjectContext = CoreDataStack.context) {
         self.init(context: context)
         
         self.title = title
