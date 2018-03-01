@@ -59,7 +59,6 @@ class AddRecipeListTableViewController: UITableViewController, NSFetchedResultsC
         return fetchedResultsController.sections?[section].numberOfObjects ?? 0
     }
 
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "addRecipeCell", for: indexPath)
 

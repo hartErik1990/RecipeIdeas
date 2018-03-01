@@ -21,14 +21,14 @@ final class RecipeViewController: UIViewController {
         guard let hit = hit else {return}
         titleLabel.title = hit.recipe.title
         directionButtonLabel.titleLabel?.text = hit.recipe.url
-        print(directionButtonLabel.titleLabel?.text ?? "")
         var formattedIngredientLines = ""
         for line in hit.recipe.ingredientLines {
             formattedIngredientLines += "• " + line + "\n"
         }
         ingredientsLabel.text = formattedIngredientLines
         RecipeController.shared.fetchImage(with: hit.recipe.image) { (image) in
-            DispatchQueue.main.async { [weak self] in                self?.recipeImageView.image = image
+            DispatchQueue.main.async { [weak self] in
+                self?.recipeImageView.image = image
                 }
             }
     }

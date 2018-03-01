@@ -10,7 +10,7 @@ import UIKit
 
 class RecipeTableViewCell: UITableViewCell {
 
-    
+    // MARK: - Properties
     var hit: Hit? {
         didSet{
             updateView()
