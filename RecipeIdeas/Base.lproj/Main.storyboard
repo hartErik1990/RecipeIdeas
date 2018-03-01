@@ -236,7 +236,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="46L-gr-Vb7" kind="show" id="2Sw-QD-aCy"/>
+                                    <segue destination="46L-gr-Vb7" kind="show" identifier="toAddRecipeDetailVC" id="2Sw-QD-aCy"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

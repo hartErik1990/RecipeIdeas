@@ -26,32 +26,32 @@ class AddRecipeDetailViewController: ShiftableViewController, UIImagePickerContr
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        updateViews()
         self.imagePicker.allowsEditing = true
         self.imagePicker.delegate = self
         directionsTextView.delegate = self
+        updateViews()
 
     }
  
     func updateViews() {
-       // guard let addedRecipe = addedRecipe else {return}
+        guard let addedRecipe = addedRecipe else {return}
         
-        titleTextView.text = addedRecipe?.title
-        directionsTextView.text = addedRecipe?.directions
-        ingredientsTextView.text =  addedRecipe?.ingredients
+        titleTextView.text = addedRecipe.title
+        directionsTextView.text = addedRecipe.directions
+        ingredientsTextView.text =  addedRecipe.ingredients
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     // MARK: - TextViewDelegate
-    func textViewShouldEndEditing(_ textView: UITextView) -> Bool {
+   func textViewShouldEndEditing(_ textView: UITextView) -> Bool {
         textView.resignFirstResponder()
-        return true
+       return true
     }
 
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
+        
         return true
     }
    
