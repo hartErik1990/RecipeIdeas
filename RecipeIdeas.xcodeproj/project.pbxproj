@@ -22,6 +22,7 @@
 		4440FC6B20485E2A006EBF74 /*  ShiftableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4440FC6A20485E2A006EBF74 /*  ShiftableViewController.swift */; };
 		44837DEA2048A7AA0075EF62 /* SwipeLeft.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44837DE92048A7AA0075EF62 /* SwipeLeft.swift */; };
 		44837DEE2048AC8C0075EF62 /* AddRecipeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44837DED2048AC8C0075EF62 /* AddRecipeTableViewCell.swift */; };
+		44837E132049B28C0075EF62 /* ColorScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44837E122049B28C0075EF62 /* ColorScheme.swift */; };
 		449D4FEC2047492400F72651 /* AddRecipeListTVC+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449D4FEB2047492400F72651 /* AddRecipeListTVC+Extensions.swift */; };
 		449D4FEE20474AD500F72651 /* AddRecipeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449D4FED20474AD500F72651 /* AddRecipeDetailViewController.swift */; };
 		44C4AD3C204737A500752CFF /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C4AD3B204737A500752CFF /* CoreDataStack.swift */; };
@@ -47,6 +48,7 @@
 		4440FC6A20485E2A006EBF74 /*  ShiftableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = " ShiftableViewController.swift"; sourceTree = "<group>"; };
 		44837DE92048A7AA0075EF62 /* SwipeLeft.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeLeft.swift; sourceTree = "<group>"; };
 		44837DED2048AC8C0075EF62 /* AddRecipeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AddRecipeTableViewCell.swift; path = RecipeIdeas/ViewControllers/RecipeAPIViewControllers/AddRecipeTableViewCell.swift; sourceTree = SOURCE_ROOT; };
+		44837E122049B28C0075EF62 /* ColorScheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorScheme.swift; sourceTree = "<group>"; };
 		449D4FEB2047492400F72651 /* AddRecipeListTVC+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AddRecipeListTVC+Extensions.swift"; sourceTree = "<group>"; };
 		449D4FED20474AD500F72651 /* AddRecipeDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRecipeDetailViewController.swift; sourceTree = "<group>"; };
 		44C4AD3B204737A500752CFF /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
@@ -85,6 +87,7 @@
 			isa = PBXGroup;
 			children = (
 				44254E4C2044C30A005B45BC /* AppDelegate.swift */,
+				44837E112049B2640075EF62 /* ColorScheme */,
 				44254E502044C30A005B45BC /* Main.storyboard */,
 				44254E662044C8D5005B45BC /* ModelControllers */,
 				44254E602044C7A7005B45BC /* Models */,
@@ -215,10 +218,18 @@
 		44837DEC2048AC0D0075EF62 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				44837DEB2048ABF90075EF62 /* RecipeAPICell */,
 				44254E6D2044CB2C005B45BC /* AddRecipeCell */,
+				44837DEB2048ABF90075EF62 /* RecipeAPICell */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		44837E112049B2640075EF62 /* ColorScheme */ = {
+			isa = PBXGroup;
+			children = (
+				44837E122049B28C0075EF62 /* ColorScheme.swift */,
+			);
+			path = ColorScheme;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -304,6 +315,7 @@
 				44254E6C2044CB25005B45BC /* RecipeTableViewCell.swift in Sources */,
 				44C4AD3E2047382900752CFF /* Extensions+Convenience.swift in Sources */,
 				44C4AD3C204737A500752CFF /* CoreDataStack.swift in Sources */,
+				44837E132049B28C0075EF62 /* ColorScheme.swift in Sources */,
 				442CA0B120466A9A00823035 /* WebViewController.swift in Sources */,
 				44254E682044C8FF005B45BC /* RecipeController.swift in Sources */,
 				44C4AD4020473A2100752CFF /* AddRecipeController.swift in Sources */,

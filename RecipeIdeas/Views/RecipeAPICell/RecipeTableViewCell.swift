@@ -8,26 +8,26 @@
 
 import UIKit
 
-class RecipeTableViewCell: UITableViewCell {
-
+final class RecipeTableViewCell: UITableViewCell {
+    
     // MARK: - Properties
     var hit: Hit? {
         didSet {
             updateView()
         }
     }
-   
+    
     var displayImage: UIImage? {
         didSet {
-        updateView()
+            updateView()
         }
     }
     
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var displayImageView: UIImageView!
-    @IBOutlet weak var ingredientsLabel: UILabel!
+    @IBOutlet weak private var titleLabel: UILabel!
+    @IBOutlet weak private var displayImageView: UIImageView!
+    @IBOutlet weak private var ingredientsLabel: UILabel!
     
-    func updateView() {
+    private func updateView() {
         guard let hit = hit else {return}
         
         if let displayImage = displayImage {

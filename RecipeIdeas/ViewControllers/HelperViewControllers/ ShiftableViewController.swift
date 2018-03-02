@@ -10,12 +10,12 @@ import UIKit
 
 class ShiftableViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate, UIGestureRecognizerDelegate {
     
-    var currentYShiftForKeyboard: CGFloat = 0
+    private var currentYShiftForKeyboard: CGFloat = 0
     
-    var textFieldBeingEdited: UITextField?
-    var textViewBeingEdited: UITextView?
+    private var textFieldBeingEdited: UITextField?
+    private var textViewBeingEdited: UITextView?
     
-    var keyboardDismissTapGestureRecognizer: UITapGestureRecognizer!
+    private var keyboardDismissTapGestureRecognizer: UITapGestureRecognizer!
     override func viewDidLoad() {
         super.viewDidLoad()
         

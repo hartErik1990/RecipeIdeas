@@ -34,7 +34,7 @@ class RecipeController {
         guard let url = components?.url else { completion() ; return}
         print("\(url)")
         
-        URLSession.shared.dataTask(with: url) { (data, _, error) in
+        let dataTask = URLSession.shared.dataTask(with: url) { (data, _, error) in
             do {
                 if let error = error {
                     NSLog("Error with perfoming the Network Request \(error.localizedDescription) \(#function)")
@@ -49,7 +49,8 @@ class RecipeController {
                 NSLog("Error with Decoding JSON \(error.localizedDescription) \(#function)")
                 completion(); return
             }
-        }.resume()
+        }
+        dataTask.resume()
     }
     
     func fetchImage(with urlString: String, completion: @escaping(UIImage?) -> Void) {
@@ -66,7 +67,6 @@ class RecipeController {
         }
         dataTask.resume()
     }
-    
 }
 
 

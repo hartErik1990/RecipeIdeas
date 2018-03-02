@@ -9,15 +9,16 @@
 import UIKit
 
 final class RecipeViewController: UIViewController {
-
+    
     // MARK: - Properties
     var hit: Hit?
-    @IBOutlet weak var recipeImageView: UIImageView!
-    @IBOutlet weak var ingredientsLabel: UITextView!
-    @IBOutlet weak var directionButtonLabel: UIButton!
-    @IBOutlet weak var titleLabel: UINavigationItem!
     
-    func updateViews() {
+    @IBOutlet weak private var recipeImageView: UIImageView!
+    @IBOutlet weak private var ingredientsLabel: UITextView!
+    @IBOutlet weak private var directionButtonLabel: UIButton!
+    @IBOutlet weak private var titleLabel: UINavigationItem!
+    
+    private func updateViews() {
         guard let hit = hit else {return}
         titleLabel.title = hit.recipe.title
         directionButtonLabel.titleLabel?.text = hit.recipe.url
@@ -29,27 +30,29 @@ final class RecipeViewController: UIViewController {
         RecipeController.shared.fetchImage(with: hit.recipe.image) { (image) in
             DispatchQueue.main.async { [weak self] in
                 self?.recipeImageView.image = image
-                }
             }
+        }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         updateViews()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
     @IBAction func directionsButtonTapped(_ sender: Any) {
         if let viewController = storyboard!.instantiateViewController(withIdentifier: "WebViewController") as? WebViewController {
-        viewController.urlString = hit?.recipe.url
-        show(viewController, sender: self)
+            DispatchQueue.main.async { [weak self] in
+                
+                viewController.urlString = self?.hit?.recipe.url
+                self?.show(viewController, sender: self)
+            }
         }
     }
-    
 }
 
 

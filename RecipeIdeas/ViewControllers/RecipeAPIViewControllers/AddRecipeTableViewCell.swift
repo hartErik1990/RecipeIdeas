@@ -8,16 +8,16 @@
 
 import UIKit
 
-class AddRecipeTableViewCell: UITableViewCell {
-   
+final class AddRecipeTableViewCell: UITableViewCell {
+    
     // MARK: - Properties
-    var recipe: AddRecipe? {
+    private var recipe: AddRecipe? {
         didSet {
             updateViews()
         }
     }
     
-    var addRecipeImage: UIImage? {
+    private var addRecipeImage: UIImage? {
         didSet {
             updateViews()
         }
@@ -26,7 +26,7 @@ class AddRecipeTableViewCell: UITableViewCell {
     @IBOutlet weak var addRecipeImageview: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     
-    func updateViews() {
+    private func updateViews() {
         guard let recipe = recipe else {return}
         
         if let addRecipeImage = addRecipeImage {
@@ -35,6 +35,5 @@ class AddRecipeTableViewCell: UITableViewCell {
             addRecipeImageview.image = nil
         }
         titleLabel.text = recipe.title
-        //addRecipeImageview.addSubview(titleLabel)
     }
 }

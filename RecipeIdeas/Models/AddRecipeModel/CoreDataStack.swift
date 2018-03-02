@@ -23,7 +23,6 @@ enum CoreDataStack {
     }()
     
     static var context: NSManagedObjectContext { return container.viewContext }
-    
 }
 
 

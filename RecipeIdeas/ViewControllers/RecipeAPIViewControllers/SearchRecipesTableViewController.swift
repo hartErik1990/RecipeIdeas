@@ -9,8 +9,8 @@
 import UIKit
 
 final class SearchRecipesTableViewController: UITableViewController, UISearchBarDelegate {
-
-    @IBOutlet weak var searchBarTextField: UISearchBar!
+    
+    @IBOutlet weak private var searchBarTextField: UISearchBar!
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let searchTerm = searchBar.text else {return}
@@ -34,26 +34,26 @@ final class SearchRecipesTableViewController: UITableViewController, UISearchBar
         super.viewDidLoad()
         searchBarTextField.delegate = self
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
- 
+        
     }
-
+    
     // MARK: - Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
+  
         return 1
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-
+        
         return RecipeController.shared.hits.count
     }
-
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "resultCell", for: indexPath) as? RecipeTableViewCell ?? RecipeTableViewCell()
-
+        
         let hit = RecipeController.shared.hits[indexPath.row]
         RecipeController.shared.fetchImage(with: hit.recipe.image) { (image) in
             DispatchQueue.main.async {
@@ -69,13 +69,13 @@ final class SearchRecipesTableViewController: UITableViewController, UISearchBar
         
         return cell
     }
-
+    
     // MARK: - TableView Row Height
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 220
     }
+    
     // MARK: - Navigation
-
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toRecipeVC" {
             if let destination = segue.destination as? RecipeViewController, let indexPath = tableView.indexPathForSelectedRow {
@@ -85,8 +85,6 @@ final class SearchRecipesTableViewController: UITableViewController, UISearchBar
             }
         }
     }
-    
-
 }
 
 

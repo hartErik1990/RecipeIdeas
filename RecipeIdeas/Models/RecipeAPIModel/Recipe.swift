@@ -28,7 +28,7 @@ struct Hit: Decodable {
     let bookmarked: Bool
     let bought: Bool
     
-    enum CodingKeys: String, CodingKey {
+    private enum CodingKeys: String, CodingKey {
         case recipe = "recipe"
         case bookmarked = "bookmarked"
         case bought = "bought"
@@ -43,21 +43,20 @@ struct Recipe: Decodable {
     let ingredients: [Ingredient]
     let ingredientLines: [String]
     
-    enum CodingKeys: String, CodingKey {
+    private enum CodingKeys: String, CodingKey {
         case title = "label"
         case image = "image"
         case source = "source"
         case url = "url"
         case ingredients = "ingredients"
         case ingredientLines = "ingredientLines"
-    
     }
 }
 // MARK: - Forth level
 struct Ingredient: Decodable {
     let text: String
     
-    enum CodingKeys: String, CodingKey {
+    private enum CodingKeys: String, CodingKey {
         case text = "text"
     }
 }
