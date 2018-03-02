@@ -219,25 +219,32 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="addRecipeCell" rowHeight="140" id="a1v-aN-VJh" customClass="AddRecipeTableViewCell" customModule="RecipeIdeas" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="140"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="addRecipeCell" rowHeight="100" id="a1v-aN-VJh" customClass="AddRecipeTableViewCell" customModule="RecipeIdeas" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="a1v-aN-VJh" id="Am4-Ha-Kua">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="139.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="99.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kCe-aI-YRc">
-                                            <rect key="frame" x="0.0" y="-10" width="375" height="150"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kCe-aI-YRc">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="99"/>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0vn-Yk-Wq3">
-                                            <rect key="frame" x="16" y="108" width="138" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0vn-Yk-Wq3">
+                                            <rect key="frame" x="24" y="77" width="342" height="20"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="kCe-aI-YRc" secondAttribute="trailing" id="6L9-yI-LI8"/>
+                                        <constraint firstAttribute="trailing" secondItem="0vn-Yk-Wq3" secondAttribute="trailing" constant="9" id="7XJ-lc-Qyz"/>
+                                        <constraint firstItem="0vn-Yk-Wq3" firstAttribute="bottom" secondItem="Am4-Ha-Kua" secondAttribute="bottomMargin" constant="8" id="BAC-zX-whs"/>
+                                        <constraint firstItem="kCe-aI-YRc" firstAttribute="top" secondItem="Am4-Ha-Kua" secondAttribute="top" id="GLS-t1-Mfo"/>
+                                        <constraint firstItem="kCe-aI-YRc" firstAttribute="leading" secondItem="Am4-Ha-Kua" secondAttribute="leading" id="Hdz-Oi-jgD"/>
+                                        <constraint firstItem="0vn-Yk-Wq3" firstAttribute="leading" secondItem="Am4-Ha-Kua" secondAttribute="leadingMargin" constant="8" id="hxM-wF-8rq"/>
+                                        <constraint firstAttribute="bottom" secondItem="kCe-aI-YRc" secondAttribute="bottom" id="xb8-GO-6O6"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="addRecipeImageview" destination="kCe-aI-YRc" id="RmV-4f-rAd"/>

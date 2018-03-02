@@ -35,6 +35,6 @@ class AddRecipeTableViewCell: UITableViewCell {
             addRecipeImageview.image = nil
         }
         titleLabel.text = recipe.title
-        addRecipeImageview.addSubview(titleLabel)
+        //addRecipeImageview.addSubview(titleLabel)
     }
 }

@@ -21,9 +21,14 @@ final class SearchRecipesTableViewController: UITableViewController, UISearchBar
             }
         }
     }
-    func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool {
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.text = ""
+        searchBar.showsCancelButton = false
         searchBar.resignFirstResponder()
-        return true
+        
+    }
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        searchBar.showsCancelButton = true
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,7 +41,6 @@ final class SearchRecipesTableViewController: UITableViewController, UISearchBar
     }
 
     // MARK: - Table view data source
-
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1

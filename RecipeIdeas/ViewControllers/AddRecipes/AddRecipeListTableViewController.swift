@@ -49,7 +49,10 @@ class AddRecipeListTableViewController: UITableViewController, NSFetchedResultsC
     }
 
     // MARK: - Table view data source
-
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100
+    }
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
@@ -64,8 +67,7 @@ class AddRecipeListTableViewController: UITableViewController, NSFetchedResultsC
         let cell = tableView.dequeueReusableCell(withIdentifier: "addRecipeCell", for: indexPath) as? AddRecipeTableViewCell ?? AddRecipeTableViewCell()
 
         let addedRecipe = fetchedResultsController.object(at: indexPath)
-        
-        cell.textLabel?.text = addedRecipe.title
+        cell.titleLabel.text = addedRecipe.title
         guard let data =  addedRecipe.imageData else {return UITableViewCell()}
         cell.addRecipeImageview?.image = UIImage(data: data)
         return cell
