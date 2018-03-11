@@ -16,6 +16,8 @@
 		44254E642044C811005B45BC /* RecipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44254E632044C811005B45BC /* RecipeViewController.swift */; };
 		44254E682044C8FF005B45BC /* RecipeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44254E672044C8FF005B45BC /* RecipeController.swift */; };
 		44254E6C2044CB25005B45BC /* RecipeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44254E6B2044CB25005B45BC /* RecipeTableViewCell.swift */; };
+		44282CDD20531078001D6800 /* Quotes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44282CDC20531078001D6800 /* Quotes.swift */; };
+		44282CE320531115001D6800 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44282CE220531115001D6800 /* MainViewController.swift */; };
 		442CA0B120466A9A00823035 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442CA0B020466A9A00823035 /* WebViewController.swift */; };
 		442CA0B42047236100823035 /* AddRecipeListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442CA0B32047236100823035 /* AddRecipeListTableViewController.swift */; };
 		442CA0BC20472F7100823035 /* RecipeIdeas.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 442CA0BA20472F7100823035 /* RecipeIdeas.xcdatamodeld */; };
@@ -42,6 +44,8 @@
 		44254E632044C811005B45BC /* RecipeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeViewController.swift; sourceTree = "<group>"; };
 		44254E672044C8FF005B45BC /* RecipeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeController.swift; sourceTree = "<group>"; };
 		44254E6B2044CB25005B45BC /* RecipeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeTableViewCell.swift; sourceTree = "<group>"; };
+		44282CDC20531078001D6800 /* Quotes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quotes.swift; sourceTree = "<group>"; };
+		44282CE220531115001D6800 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		442CA0B020466A9A00823035 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		442CA0B32047236100823035 /* AddRecipeListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRecipeListTableViewController.swift; sourceTree = "<group>"; };
 		442CA0BB20472F7100823035 /* RecipeIdeas.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RecipeIdeas.xcdatamodel; sourceTree = "<group>"; };
@@ -101,6 +105,7 @@
 		44254E602044C7A7005B45BC /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				44282CDE20531082001D6800 /* QuotesFromChefs */,
 				442CA0B920472DDA00823035 /* AddRecipeModel */,
 				442CA0B820472DC400823035 /* RecipeAPIModel */,
 			);
@@ -113,6 +118,7 @@
 				44837DE8204862C10075EF62 /* HelperViewControllers */,
 				442CA0B22047233B00823035 /* AddRecipes */,
 				442CA0B520472C6A00823035 /* RecipeAPIViewControllers */,
+				44282CE42053111A001D6800 /* MainViewController */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -142,6 +148,22 @@
 				44254E582044C30A005B45BC /* Info.plist */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		44282CDE20531082001D6800 /* QuotesFromChefs */ = {
+			isa = PBXGroup;
+			children = (
+				44282CDC20531078001D6800 /* Quotes.swift */,
+			);
+			path = QuotesFromChefs;
+			sourceTree = "<group>";
+		};
+		44282CE42053111A001D6800 /* MainViewController */ = {
+			isa = PBXGroup;
+			children = (
+				44282CE220531115001D6800 /* MainViewController.swift */,
+			);
+			path = MainViewController;
 			sourceTree = "<group>";
 		};
 		442CA0B22047233B00823035 /* AddRecipes */ = {
@@ -305,9 +327,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				44282CE320531115001D6800 /* MainViewController.swift in Sources */,
 				44254E642044C811005B45BC /* RecipeViewController.swift in Sources */,
 				44837DEE2048AC8C0075EF62 /* AddRecipeTableViewCell.swift in Sources */,
 				449D4FEC2047492400F72651 /* AddRecipeListTVC+Extensions.swift in Sources */,
+				44282CDD20531078001D6800 /* Quotes.swift in Sources */,
 				442CA0B42047236100823035 /* AddRecipeListTableViewController.swift in Sources */,
 				44254E622044C7DC005B45BC /* SearchRecipesTableViewController.swift in Sources */,
 				44254E5F2044C31D005B45BC /* Recipe.swift in Sources */,

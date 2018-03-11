@@ -13,9 +13,10 @@ final class SearchRecipesTableViewController: UITableViewController, UISearchBar
     @IBOutlet weak private var searchBarTextField: UISearchBar!
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        guard let searchTerm = searchBar.text else {return}
+        guard let searchTerm = searchBar.text else { return }
         searchBar.resignFirstResponder()
         RecipeController.shared.fetchResults(with: searchTerm) {
+            print(searchTerm)
             DispatchQueue.main.async { [weak self] in
                 self?.tableView.reloadData()
             }
@@ -55,6 +56,7 @@ final class SearchRecipesTableViewController: UITableViewController, UISearchBar
         let cell = tableView.dequeueReusableCell(withIdentifier: "resultCell", for: indexPath) as? RecipeTableViewCell ?? RecipeTableViewCell()
         
         let hit = RecipeController.shared.hits[indexPath.row]
+        
         RecipeController.shared.fetchImage(with: hit.recipe.image) { (image) in
             DispatchQueue.main.async {
                 cell.hit = hit

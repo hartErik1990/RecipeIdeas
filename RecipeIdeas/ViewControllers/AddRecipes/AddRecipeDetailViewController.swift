@@ -31,30 +31,25 @@ final class AddRecipeDetailViewController: ShiftableViewController, UIImagePicke
         self.imagePicker.delegate = self
         directionsTextView.delegate = self
         updateViews()
+        
     }
   
     private func updateViews() {
-        guard let addedRecipe = addedRecipe else {return}
+        guard let addedRecipe = addedRecipe else { return }
         
         titleTextView.text = addedRecipe.title
         directionsTextView.text = addedRecipe.directions
-        //let ingredients = addedRecipe.ingredients
-        //        guard var lines = ingredients?.components(separatedBy: CharacterSet.newlines) else { return }
-        //        let bulletPoint = "O"
-        //        for line in lines {
-        //            if line.count == 0 {
-        //                print(line)
-        //                return
-        //            } else {
-        //
-        //                lines.insert(bulletPoint, at: 0)
-        //                print(lines)
-        //                ingredientsTextView.text = bulletPoint + line
-        //            }
-        //        }
+       
         ingredientsTextView.text = addedRecipe.ingredients
         addRecipeImage.image = UIImage(data: addedRecipe.imageData!)
+        let rightSwipe = UISwipeGestureRecognizer(target: self, action: #selector(swipeAction(swipe:)))
+        rightSwipe.direction = UISwipeGestureRecognizerDirection.right
+        self.view.addGestureRecognizer(rightSwipe)
         
+    }
+    @objc func swipeAction(swipe:UISwipeGestureRecognizer)
+    {
+        performSegue(withIdentifier: "toAddRecipeTBV", sender: self)
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -72,7 +67,7 @@ final class AddRecipeDetailViewController: ShiftableViewController, UIImagePicke
     
     @IBAction func saveButtonTapped(_ sender: Any) {
         
-        guard let title = titleTextView.text, let ingredients = ingredientsTextView.text, let directions = directionsTextView.text, let imageData = addRecipeImage.image else {return}
+        guard let title = titleTextView.text, let ingredients = ingredientsTextView.text, let directions = directionsTextView.text, let imageData = addRecipeImage.image else { return }
         let image = Data(UIImageJPEGRepresentation(imageData, 0.9)!)
         //For UpdatingViews
         if let addedRecipe = addedRecipe {
