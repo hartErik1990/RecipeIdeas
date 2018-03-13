@@ -19,7 +19,7 @@ final class RecipeViewController: UIViewController {
     @IBOutlet weak private var titleLabel: UINavigationItem!
     
     private func updateViews() {
-        guard let hit = hit else {return}
+        guard let hit = hit else { return }
         titleLabel.title = hit.recipe.title
         directionButtonLabel.titleLabel?.text = hit.recipe.url
         var formattedIngredientLines = ""

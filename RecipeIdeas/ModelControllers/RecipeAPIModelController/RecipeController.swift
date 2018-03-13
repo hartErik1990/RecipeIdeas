@@ -21,7 +21,7 @@ class RecipeController {
     
     var hits = [Hit]()
     
-    func fetchResults(with searchTerm: String, completion: @escaping () -> Void) {
+    func fetchResults(with searchTerm: String, completion: @escaping (Error?) -> Void) {
         
         var components = URLComponents(url: baseURL, resolvingAgainstBaseURL: true)
         
@@ -31,23 +31,23 @@ class RecipeController {
                                   URLQueryItem(name: "app_key", value: appKey),
                                   URLQueryItem(name: JSONDictionary.CodingKeys.from.rawValue, value: "\(0)"),
                                   URLQueryItem(name: JSONDictionary.CodingKeys.to.rawValue, value: "\(50)")]
-        guard let url = components?.url else { completion() ; return}
+        guard let url = components?.url else { completion(NSLog("\(Error.self) \(#function)") as? Error) ; return }
         print("\(url)")
         
         let dataTask = URLSession.shared.dataTask(with: url) { (data, _, error) in
             do {
                 if let error = error {
                     NSLog("Error with perfoming the Network Request \(error.localizedDescription) \(#function)")
-                    completion() ; return
+                    completion(nil) ; return
                 }
-                guard let data = data else { completion(); return}
+                guard let data = data else { completion(nil); return }
                 let jsonDictionary = try JSONDecoder().decode(JSONDictionary.self, from: data)
                 let hits = jsonDictionary.hits
                 self.hits = hits
-                completion()
+                completion(nil)
             } catch {
                 NSLog("Error with Decoding JSON \(error.localizedDescription) \(#function)")
-                completion(); return
+                completion(nil); return
             }
         }
         dataTask.resume()
@@ -55,13 +55,13 @@ class RecipeController {
     
     func fetchImage(with urlString: String, completion: @escaping(UIImage?) -> Void) {
         
-        guard let url = URL(string: urlString) else {completion(nil); return}
+        guard let url = URL(string: urlString) else { completion(nil); return }
         let dataTask = URLSession.shared.dataTask(with: url) { (data, _, error) in
             if let error = error {
                 NSLog("Error with converting URL to data \(error.localizedDescription) \(#function)")
                 completion(nil); return
             }
-            guard let data = data else {completion(nil); return}
+            guard let data = data else { completion(nil); return } 
             let image = UIImage(data: data)
             completion(image)
         }

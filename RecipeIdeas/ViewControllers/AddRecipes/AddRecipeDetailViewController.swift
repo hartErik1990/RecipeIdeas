@@ -68,14 +68,18 @@ final class AddRecipeDetailViewController: ShiftableViewController, UIImagePicke
     @IBAction func saveButtonTapped(_ sender: Any) {
         
         guard let title = titleTextView.text, let ingredients = ingredientsTextView.text, let directions = directionsTextView.text, let imageData = addRecipeImage.image else { return }
-        let image = Data(UIImageJPEGRepresentation(imageData, 0.9)!)
-        //For UpdatingViews
-        if let addedRecipe = addedRecipe {
-            AddRecipeController.shared.updateRecipe(with: addedRecipe, title: title, ingredients: ingredients, directions: directions, imageData: image)
+        if title == "" {
+            noRecipeTitleAlert()
         } else {
-            AddRecipeController.shared.addRecipe(withTitle: title, ingredients: ingredients, directions: directions, imageData: image)
+            let image = Data(UIImageJPEGRepresentation(imageData, 0.9)!)
+            //For UpdatingViews
+            if let addedRecipe = addedRecipe {
+                AddRecipeController.shared.updateRecipe(with: addedRecipe, title: title, ingredients: ingredients, directions: directions, imageData: image)
+            } else {
+                AddRecipeController.shared.addRecipe(withTitle: title, ingredients: ingredients, directions: directions, imageData: image)
+            }
+            navigationController?.popViewController(animated: true)
         }
-        navigationController?.popViewController(animated: true)
     }
     
     //ImagePicker
@@ -116,6 +120,13 @@ final class AddRecipeDetailViewController: ShiftableViewController, UIImagePicke
             addImageButton.setTitle("", for: UIControlState())
             addRecipeImage.image = image
         }
+    }
+    
+    func noRecipeTitleAlert() {
+        let alert = UIAlertController(title: "Please Enter a Title", message: "so you can organize your recipes better", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
+        alert.addAction(okAction)
+        present(alert, animated: true, completion: nil)
     }
 }
 

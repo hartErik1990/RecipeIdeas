@@ -11,17 +11,30 @@ import UIKit
 final class SearchRecipesTableViewController: UITableViewController, UISearchBarDelegate {
     
     @IBOutlet weak private var searchBarTextField: UISearchBar!
-    
+    var hits = [Hit]()
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let searchTerm = searchBar.text else { return }
         searchBar.resignFirstResponder()
-        RecipeController.shared.fetchResults(with: searchTerm) {
+        RecipeController.shared.fetchResults(with: searchTerm) { error in
             print(searchTerm)
             DispatchQueue.main.async { [weak self] in
+                if let err = error {
+                    NSLog("error with fetching MarketData \(err.localizedDescription) \(#function)"); return }
                 self?.tableView.reloadData()
+                if RecipeController.shared.hits.count == 0 {
+                    return self!.noRecipeFoundAlert()
+                }
             }
         }
     }
+    
+    func noRecipeFoundAlert() {
+        let alert = UIAlertController(title: "No Results", message: "Could not find Recipe for what you are looking for please try again", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
+        alert.addAction(okAction)
+        present(alert, animated: true, completion: nil)
+    }
+    
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.text = ""
         searchBar.showsCancelButton = false
@@ -48,7 +61,6 @@ final class SearchRecipesTableViewController: UITableViewController, UISearchBar
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         return RecipeController.shared.hits.count
     }
     
@@ -62,6 +74,7 @@ final class SearchRecipesTableViewController: UITableViewController, UISearchBar
                 cell.hit = hit
                 if let currentIndexPath = self.tableView?.indexPath(for: cell), currentIndexPath == indexPath {
                     cell.displayImage = image
+                    print("\(hit.recipe.image)")
                 } else {
                     NSLog("Error with getting image")
                     return

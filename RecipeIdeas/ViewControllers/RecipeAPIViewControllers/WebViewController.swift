@@ -26,9 +26,9 @@ final class WebViewController: UIViewController {
     }
     private func updateWebView() {
         DispatchQueue.main.async { [weak self] in
-            guard let urlString = self?.urlString else {return}
+            guard let urlString = self?.urlString else { return }
             let newUrl = URL(string: urlString)
-            guard let url = newUrl else {return}
+            guard let url = newUrl else { return }
             let request = URLRequest(url: url)
             self?.webView.load(request)
         }

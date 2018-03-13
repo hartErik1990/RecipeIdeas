@@ -27,7 +27,7 @@ final class AddRecipeTableViewCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     
     private func updateViews() {
-        guard let recipe = recipe else {return}
+        guard let recipe = recipe else { return }
         
         if let addRecipeImage = addRecipeImage {
             addRecipeImageview.image = addRecipeImage

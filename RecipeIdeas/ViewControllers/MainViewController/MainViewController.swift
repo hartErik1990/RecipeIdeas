@@ -11,10 +11,13 @@ import UIKit
 class MainViewController: UIViewController, UITextViewDelegate {
 
     
+    @IBOutlet weak var quoteButton: CustomButton!
+    
     @IBAction func randomQuoteButtonTapped(_ sender: Any) {
         quoteLabel.text = ""
         viewDidLoad()
         UIView.transition(with: quoteLabel, duration: 1, options: [.transitionCrossDissolve], animations: nil, completion: nil)
+       
     }
     
     @IBOutlet weak var quoteLabel: PaddingLabel!
@@ -24,7 +27,7 @@ class MainViewController: UIViewController, UITextViewDelegate {
         super.viewDidLoad()
         customLabel()
         randomQuote()
-        //createRandomButton()
+        
     }
  
     func randomQuote() {
@@ -66,7 +69,4 @@ class PaddingLabel: UILabel {
         }
     }
 }
-
-
-
 

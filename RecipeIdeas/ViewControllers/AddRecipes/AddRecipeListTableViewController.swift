@@ -63,7 +63,7 @@ class AddRecipeListTableViewController: UITableViewController, NSFetchedResultsC
         
         let addedRecipe = fetchedResultsController.object(at: indexPath)
         cell.titleLabel.text = addedRecipe.title
-        guard let data =  addedRecipe.imageData else {return UITableViewCell()}
+        guard let data =  addedRecipe.imageData else { return UITableViewCell() }
         cell.addRecipeImageview?.image = UIImage(data: data)
         return cell
     }
@@ -85,6 +85,7 @@ class AddRecipeListTableViewController: UITableViewController, NSFetchedResultsC
             }
         }
     }
+   
 }
 
 
