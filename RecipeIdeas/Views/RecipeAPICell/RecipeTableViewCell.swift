@@ -28,7 +28,8 @@ final class RecipeTableViewCell: UITableViewCell {
         self.customLabel(label: titleLabel)
         self.customLabel(label: ingredientsLabel)
         self.customImageView(imageView: displayImageView)
-        blackfade()
+        displayImageView.blackfade(displayImageView)
+        //blackfade(displayImageView)
     }
     
     @IBOutlet weak private var titleLabel: PaddingLabel!
@@ -69,22 +70,22 @@ final class RecipeTableViewCell: UITableViewCell {
         imageView.layer.masksToBounds = true
         
     }
-    func blackfade() {
-        let view = UIView(frame: CGRect(x: displayImageView.frame.origin.x - 20, y: displayImageView.frame.origin.y, width: displayImageView.frame.size.width * 1.2, height: displayImageView.frame.size.height))
-        
-        let gradient = CAGradientLayer()
-    
-        gradient.frame = view.frame
-        
-        gradient.colors = [UIColor.clear.cgColor, UIColor.clear.cgColor, UIColor.black.cgColor]
-        
-        gradient.locations = [0.0, 0.5, 1.0]
-        
-        view.layer.insertSublayer(gradient, at: 0)
-        
-        displayImageView.addSubview(view)
-        displayImageView.bringSubview(toFront: view)
-    }
+//    func blackfade(_ imageView: UIImageView) {
+//        let view = UIView(frame: CGRect(x: imageView.frame.origin.x - 20, y: imageView.frame.origin.y, width: imageView.frame.size.width * 1.2, height: imageView.frame.size.height))
+//        
+//        let gradient = CAGradientLayer()
+//    
+//        gradient.frame = view.frame
+//        
+//        gradient.colors = [UIColor.clear.cgColor, UIColor.clear.cgColor, UIColor.black.cgColor]
+//        
+//        gradient.locations = [0.0, 0.5, 1.0]
+//        
+//        view.layer.insertSublayer(gradient, at: 0)
+//        
+//        imageView.addSubview(view)
+//        imageView.bringSubview(toFront: view)
+//    }
 
 }
 

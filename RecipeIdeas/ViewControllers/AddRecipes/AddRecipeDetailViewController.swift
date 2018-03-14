@@ -34,7 +34,7 @@ final class AddRecipeDetailViewController: ShiftableViewController, UIImagePicke
         customTextView(textView: ingredientsTextView)
         customTextView(textView: directionsTextView)
         updateViews()
-        
+
     }
   
     private func updateViews() {
@@ -45,9 +45,6 @@ final class AddRecipeDetailViewController: ShiftableViewController, UIImagePicke
        
         ingredientsTextView.text = addedRecipe.ingredients
         addRecipeImage.image = UIImage(data: addedRecipe.imageData!)
-        let rightSwipe = UISwipeGestureRecognizer(target: self, action: #selector(swipeAction(swipe:)))
-        rightSwipe.direction = UISwipeGestureRecognizerDirection.right
-        self.view.addGestureRecognizer(rightSwipe)
         
     }
     
@@ -73,11 +70,6 @@ final class AddRecipeDetailViewController: ShiftableViewController, UIImagePicke
         textView.layer.borderWidth = 3
         textView.layer.borderColor = ColorScheme.shared.bunting.cgColor
         textView.layer.masksToBounds = true
-    }
-    
-    @objc func swipeAction(swipe: UISwipeGestureRecognizer)
-    {
-        performSegue(withIdentifier: "toAddRecipeTBV", sender: self)
     }
     
     override func didReceiveMemoryWarning() {

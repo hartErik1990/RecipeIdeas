@@ -65,6 +65,7 @@ final class AddRecipeListTableViewController: UITableViewController, NSFetchedRe
         cell.titleLabel.text = addedRecipe.title
         guard let data = addedRecipe.imageData else { return UITableViewCell() }
         cell.addRecipeImageview?.image = UIImage(data: data)
+        cell.addRecipeImageview.blackfade(cell.addRecipeImageview)
        // cell.addRecipeImageview.addSubview(cell.titleLabel)
         cell.customLabel()
         cell.customImage()
