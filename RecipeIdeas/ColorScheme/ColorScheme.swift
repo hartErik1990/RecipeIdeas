@@ -8,7 +8,9 @@
 
 import UIKit
 
-class ColorScheme {
+final class ColorScheme {
+    
+    static let shared = ColorScheme()
     let bunting = UIColor(red:0.18, green:0.19, blue:0.26, alpha:1.0)
     let jungleMist = UIColor(red:0.75, green:0.75, blue:0.75, alpha:1.0)
     let white = UIColor(red:1.00, green:1.00, blue:1.00, alpha:1.0)

@@ -8,12 +8,12 @@
 
 import Foundation
 
-class MarketController {
+final class MarketController {
     static let shared = MarketController()
     
     
-    let zipURL = "https://search.ams.usda.gov/farmersmarkets/v1/data.svc/zipSearch?zip="
-    let idURL = "https://search.ams.usda.gov/farmersmarkets/v1/data.svc/mktDetail?id="
+    private let zipURL = "https://search.ams.usda.gov/farmersmarkets/v1/data.svc/zipSearch?zip="
+    private let idURL = "https://search.ams.usda.gov/farmersmarkets/v1/data.svc/mktDetail?id="
     
     func fetchFarmersMarketData(with zipcode: String, completion: @escaping (FarmersMarketResults?, Error?) -> ()) {
         let urlString = zipURL + zipcode
@@ -39,7 +39,8 @@ class MarketController {
     }
     
     func getStaticData(with id: String, completion: @escaping (MarketDetails?, Error?) -> ()) {
-        guard let url = URL(string: "https://search.ams.usda.gov/farmersmarkets/v1/data.svc/mktDetail?id=\(id)") else { return }
+        let urlString = idURL + id
+        guard let url = URL(string:urlString ) else { return }
         URLSession.shared.dataTask(with: url) { (data, _, error) in
             if let err = error {
                 completion(nil, err)

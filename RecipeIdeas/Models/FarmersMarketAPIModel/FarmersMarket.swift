@@ -9,21 +9,21 @@
 import Foundation
 //import CoreLocation
 
-class FarmersMarketResults: Codable {
+final class FarmersMarketResults: Codable {
     var results: [MarketIdentifier]?
 }
 
-class MarketIdentifier: Codable {
+final class MarketIdentifier: Codable {
     var id: String?
     var marketname: String?
 }
 
 
-class MarketDetails: Codable {
+final class MarketDetails: Codable {
     var marketdetails: Details?
 }
 
-class Details: Codable {
+final class Details: Codable {
     var Address: String?
     var GoogleLink: String?
     var Products: String?

@@ -31,8 +31,9 @@
 		44A46B9B205612700041E812 /* MarketAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A46B9A205612700041E812 /* MarketAnnotation.swift */; };
 		44A46B9E205612BF0041E812 /* MarketController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A46B9D205612BF0041E812 /* MarketController.swift */; };
 		44A46BA1205613320041E812 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A46BA0205613320041E812 /* MapViewController.swift */; };
-		44A46BA3205613960041E812 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A46BA2205613960041E812 /* DetailsViewController.swift */; };
+		44A46BA3205613960041E812 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A46BA2205613960041E812 /* DetailViewController.swift */; };
 		44A46BA6205719850041E812 /* CustomUIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A46BA5205719850041E812 /* CustomUIButton.swift */; };
+		44A46BA820576F680041E812 /* CustomUILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A46BA720576F680041E812 /* CustomUILabel.swift */; };
 		44C4AD3C204737A500752CFF /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C4AD3B204737A500752CFF /* CoreDataStack.swift */; };
 		44C4AD3E2047382900752CFF /* Extensions+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C4AD3D2047382900752CFF /* Extensions+Convenience.swift */; };
 		44C4AD4020473A2100752CFF /* AddRecipeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C4AD3F20473A2100752CFF /* AddRecipeController.swift */; };
@@ -65,8 +66,9 @@
 		44A46B9A205612700041E812 /* MarketAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketAnnotation.swift; sourceTree = "<group>"; };
 		44A46B9D205612BF0041E812 /* MarketController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketController.swift; sourceTree = "<group>"; };
 		44A46BA0205613320041E812 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
-		44A46BA2205613960041E812 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
+		44A46BA2205613960041E812 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		44A46BA5205719850041E812 /* CustomUIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUIButton.swift; sourceTree = "<group>"; };
+		44A46BA720576F680041E812 /* CustomUILabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUILabel.swift; sourceTree = "<group>"; };
 		44C4AD3B204737A500752CFF /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		44C4AD3D2047382900752CFF /* Extensions+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions+Convenience.swift"; sourceTree = "<group>"; };
 		44C4AD3F20473A2100752CFF /* AddRecipeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRecipeController.swift; sourceTree = "<group>"; };
@@ -255,7 +257,7 @@
 		44837DEC2048AC0D0075EF62 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				44A46BA42057195B0041E812 /* HelperButtons */,
+				44A46BA42057195B0041E812 /* HelperLabels */,
 				44254E6D2044CB2C005B45BC /* AddRecipeCell */,
 				44837DEB2048ABF90075EF62 /* RecipeAPICell */,
 			);
@@ -291,17 +293,18 @@
 			isa = PBXGroup;
 			children = (
 				44A46BA0205613320041E812 /* MapViewController.swift */,
-				44A46BA2205613960041E812 /* DetailsViewController.swift */,
+				44A46BA2205613960041E812 /* DetailViewController.swift */,
 			);
 			path = FarmersMarketAPIViewControllers;
 			sourceTree = "<group>";
 		};
-		44A46BA42057195B0041E812 /* HelperButtons */ = {
+		44A46BA42057195B0041E812 /* HelperLabels */ = {
 			isa = PBXGroup;
 			children = (
 				44A46BA5205719850041E812 /* CustomUIButton.swift */,
+				44A46BA720576F680041E812 /* CustomUILabel.swift */,
 			);
-			path = HelperButtons;
+			path = HelperLabels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -381,6 +384,7 @@
 				44254E642044C811005B45BC /* RecipeViewController.swift in Sources */,
 				44837DEE2048AC8C0075EF62 /* AddRecipeTableViewCell.swift in Sources */,
 				449D4FEC2047492400F72651 /* AddRecipeListTVC+Extensions.swift in Sources */,
+				44A46BA820576F680041E812 /* CustomUILabel.swift in Sources */,
 				44A46B9E205612BF0041E812 /* MarketController.swift in Sources */,
 				44282CDD20531078001D6800 /* Quotes.swift in Sources */,
 				442CA0B42047236100823035 /* AddRecipeListTableViewController.swift in Sources */,
@@ -397,7 +401,7 @@
 				44254E682044C8FF005B45BC /* RecipeController.swift in Sources */,
 				44A46BA6205719850041E812 /* CustomUIButton.swift in Sources */,
 				44C4AD4020473A2100752CFF /* AddRecipeController.swift in Sources */,
-				44A46BA3205613960041E812 /* DetailsViewController.swift in Sources */,
+				44A46BA3205613960041E812 /* DetailViewController.swift in Sources */,
 				44254E4D2044C30A005B45BC /* AppDelegate.swift in Sources */,
 				44A46B9B205612700041E812 /* MarketAnnotation.swift in Sources */,
 				44837DEA2048A7AA0075EF62 /* SwipeLeft.swift in Sources */,
@@ -546,7 +550,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = erikhart1990.RecipeIdeas;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -561,7 +565,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = erikhart1990.RecipeIdeas;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

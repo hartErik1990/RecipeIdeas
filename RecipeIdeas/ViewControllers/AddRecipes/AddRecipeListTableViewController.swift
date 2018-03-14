@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class AddRecipeListTableViewController: UITableViewController, NSFetchedResultsControllerDelegate {
+final class AddRecipeListTableViewController: UITableViewController, NSFetchedResultsControllerDelegate {
     
     // MARK: - Properties
     private let fetchedResultsController: NSFetchedResultsController<AddRecipe> = {
@@ -63,8 +63,12 @@ class AddRecipeListTableViewController: UITableViewController, NSFetchedResultsC
         
         let addedRecipe = fetchedResultsController.object(at: indexPath)
         cell.titleLabel.text = addedRecipe.title
-        guard let data =  addedRecipe.imageData else { return UITableViewCell() }
+        guard let data = addedRecipe.imageData else { return UITableViewCell() }
         cell.addRecipeImageview?.image = UIImage(data: data)
+       // cell.addRecipeImageview.addSubview(cell.titleLabel)
+        cell.customLabel()
+        cell.customImage()
+       // cell.updateViews()
         return cell
     }
     

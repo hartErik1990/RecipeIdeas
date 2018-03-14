@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-class MarketAnnotation: NSObject, MKAnnotation {
+final class MarketAnnotation: NSObject, MKAnnotation {
     
     var marketDetail: Details
     var lat: Double?

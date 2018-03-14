@@ -11,7 +11,9 @@ import UIKit
 final class SearchRecipesTableViewController: UITableViewController, UISearchBarDelegate {
     
     @IBOutlet weak private var searchBarTextField: UISearchBar!
-    var hits = [Hit]()
+    
+    private var hits = [Hit]()
+    
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let searchTerm = searchBar.text else { return }
         searchBar.resignFirstResponder()
@@ -28,7 +30,7 @@ final class SearchRecipesTableViewController: UITableViewController, UISearchBar
         }
     }
     
-    func noRecipeFoundAlert() {
+    private func noRecipeFoundAlert() {
         let alert = UIAlertController(title: "No Results", message: "Could not find Recipe for what you are looking for please try again", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
         alert.addAction(okAction)

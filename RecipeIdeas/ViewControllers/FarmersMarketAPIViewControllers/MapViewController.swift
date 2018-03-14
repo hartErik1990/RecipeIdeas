@@ -10,9 +10,9 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class MapViewController: UIViewController, MKMapViewDelegate , UISearchBarDelegate {
+final class MapViewController: UIViewController, MKMapViewDelegate , UISearchBarDelegate {
     
-    lazy var mapView: MKMapView = {
+    lazy private var mapView: MKMapView = {
         let mapview = MKMapView()
         mapview.delegate = self
         return mapview
@@ -64,9 +64,9 @@ class MapViewController: UIViewController, MKMapViewDelegate , UISearchBarDelega
     }
    
     
-    var location = CLLocation()
+    private var location = CLLocation()
     
-    func changeAddressToCoordinates(details: Details) {
+    private func changeAddressToCoordinates(details: Details) {
         let geocoder = CLGeocoder()
         //DispatchQueue.main.async { [weak self] in
         //guard let marketName = marketID.marketname else { return }
@@ -89,7 +89,7 @@ class MapViewController: UIViewController, MKMapViewDelegate , UISearchBarDelega
     }
     
     
-    func setMyHomeTownPosition() {
+    private func setMyHomeTownPosition() {
         DispatchQueue.main.async { [weak self] in
             let visibleRegion = MKCoordinateRegionMakeWithDistance(CLLocationCoordinate2D(latitude: 38.729613, longitude: -120.798601), 1000, 1000)
             self?.mapView.setRegion((self?.mapView.regionThatFits(visibleRegion))!, animated: true)
@@ -117,7 +117,9 @@ class MapViewController: UIViewController, MKMapViewDelegate , UISearchBarDelega
         }
         return view
     }
-    var details: Details?
+    
+    private var details: Details?
+    
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         
         if control == view.rightCalloutAccessoryView {
@@ -129,13 +131,13 @@ class MapViewController: UIViewController, MKMapViewDelegate , UISearchBarDelega
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "toDetailVC" )
         {
-            if let destination = segue.destination as? DetailsViewController {
+            if let destination = segue.destination as? DetailViewController {
                 destination.marketDetails = details
             }
         }
         
     }
-    func noZipcodeFoundAlert() {
+    private func noZipcodeFoundAlert() {
         let alert = UIAlertController(title: "No Results", message: "There has been an error with finding the Farmers Markets you are looking for, please try again.", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
         alert.addAction(okAction)

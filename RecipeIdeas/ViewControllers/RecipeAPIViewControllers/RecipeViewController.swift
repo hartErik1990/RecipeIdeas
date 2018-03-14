@@ -14,8 +14,9 @@ final class RecipeViewController: UIViewController {
     var hit: Hit?
     
     @IBOutlet weak private var recipeImageView: UIImageView!
-    @IBOutlet weak private var ingredientsLabel: UITextView!
-    @IBOutlet weak private var directionButtonLabel: UIButton!
+    @IBOutlet weak private var titleOfIngredientsLabel: PaddingLabel!
+    @IBOutlet weak private var ingredientsTextView: UITextView!
+    @IBOutlet weak private var directionButtonLabel: CustomButton!
     @IBOutlet weak private var titleLabel: UINavigationItem!
     
     private func updateViews() {
@@ -26,7 +27,7 @@ final class RecipeViewController: UIViewController {
         for line in hit.recipe.ingredientLines {
             formattedIngredientLines += "• " + line + "\n"
         }
-        ingredientsLabel.text = formattedIngredientLines
+        ingredientsTextView.text = formattedIngredientLines
         RecipeController.shared.fetchImage(with: hit.recipe.image) { (image) in
             DispatchQueue.main.async { [weak self] in
                 self?.recipeImageView.image = image
@@ -37,6 +38,7 @@ final class RecipeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         updateViews()
+        custumDesign()
     }
     
     override func didReceiveMemoryWarning() {
@@ -44,7 +46,7 @@ final class RecipeViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func directionsButtonTapped(_ sender: Any) {
+    @IBAction private func directionsButtonTapped(_ sender: Any) {
         if let viewController = storyboard!.instantiateViewController(withIdentifier: "WebViewController") as? WebViewController {
             DispatchQueue.main.async { [weak self] in
                 
@@ -52,6 +54,34 @@ final class RecipeViewController: UIViewController {
                 self?.show(viewController, sender: self)
             }
         }
+    }
+    private func custumDesign() {
+        
+        //customImageView
+        recipeImageView.layer.cornerRadius = 12
+        recipeImageView.backgroundColor = ColorScheme.shared.jungleMist
+        recipeImageView.layer.borderWidth = 3
+        recipeImageView.layer.borderColor = ColorScheme.shared.bunting.cgColor
+        recipeImageView.layer.masksToBounds =  true
+        
+        //customLabel
+        titleOfIngredientsLabel.layer.cornerRadius = 12
+        titleOfIngredientsLabel.layer.borderWidth = 2
+        titleOfIngredientsLabel.layer.borderColor = ColorScheme.shared.bunting.cgColor
+        titleOfIngredientsLabel.layer.masksToBounds = true
+        
+        //customTextView
+        ingredientsTextView.layer.cornerRadius =  12
+        ingredientsTextView.layer.borderWidth = 3
+        ingredientsTextView.layer.borderColor = ColorScheme.shared.bunting.cgColor
+        ingredientsTextView.layer.masksToBounds = true
+        
+        //custumButton
+//        directionButtonLabel.layer.cornerRadius = 12
+//        directionButtonLabel.backgroundColor = ColorScheme.shared.crusta
+//        directionButtonLabel.layer.borderWidth = 3
+//        directionButtonLabel.layer.borderColor = ColorScheme.shared.bunting.cgColor
+//        directionButtonLabel.layer.masksToBounds = true
     }
 }
 

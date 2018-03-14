@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RecipeController {
+final class RecipeController {
     
     // MARK: - Properties
     static let shared = RecipeController()
