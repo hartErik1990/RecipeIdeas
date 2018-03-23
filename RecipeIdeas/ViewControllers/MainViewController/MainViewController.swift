@@ -11,14 +11,7 @@ import UIKit
 final class MainViewController: UIViewController, UITextViewDelegate {
 
     
-    @IBOutlet weak private var quoteButton: CustomButton!
-    
-    @IBAction private func randomQuoteButtonTapped(_ sender: Any) {
-        quoteLabel.text = ""
-        viewDidLoad()
-        UIView.transition(with: quoteLabel, duration: 1, options: [.transitionCrossDissolve], animations: nil, completion: nil)
-       
-    }
+    @IBOutlet weak private var visualEffectLabel: CustomVisualEffect!
     
     @IBOutlet weak private var quoteLabel: PaddingLabel!
     
@@ -40,7 +33,7 @@ final class MainViewController: UIViewController, UITextViewDelegate {
         quoteLabel.layer.cornerRadius = 12
         quoteLabel.layer.borderColor = color.bunting.cgColor
         quoteLabel.layer.borderWidth = 2
-            }
+    }
 }
 
 

@@ -8,33 +8,27 @@
 
 import UIKit
 
-final class SearchRecipesTableViewController: UITableViewController, UISearchBarDelegate {
+final class SearchRecipesTableViewController: UITableViewController, UISearchBarDelegate, UINavigationBarDelegate {
     
     @IBOutlet weak private var searchBarTextField: UISearchBar!
     
     private var hits = [Hit]()
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        guard let searchTerm = searchBar.text else { return }
-        searchBar.resignFirstResponder()
-        RecipeController.shared.fetchResults(with: searchTerm) { error in
-            print(searchTerm)
-            DispatchQueue.main.async { [weak self] in
+        DispatchQueue.main.async { [unowned self] in
+            self.searchBarTextField.backgroundImage = UIImage()
+            guard let searchTerm = searchBar.text else { return }
+            searchBar.resignFirstResponder()
+            RecipeController.shared.fetchResults(with: searchTerm) { error in
+                print(searchTerm)
                 if let err = error {
                     NSLog("error with fetching MarketData \(err.localizedDescription) \(#function)"); return }
-                self?.tableView.reloadData()
+                self.tableView.reloadData()
                 if RecipeController.shared.hits.count == 0 {
-                    return self!.noRecipeFoundAlert()
+                    return self.noRecipeFoundAlert()
                 }
             }
         }
-    }
-    
-    private func noRecipeFoundAlert() {
-        let alert = UIAlertController(title: "No Results", message: "Could not find Recipe for what you are looking for please try again", preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
-        alert.addAction(okAction)
-        present(alert, animated: true, completion: nil)
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
@@ -43,12 +37,39 @@ final class SearchRecipesTableViewController: UITableViewController, UISearchBar
         searchBar.resignFirstResponder()
         
     }
+    
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         searchBar.showsCancelButton = true
     }
+    
+    // MARK: - turn the
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+  
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let imageView = UIImageView(image: UIImage(named: "Burger"))
+        imageView.frame = self.tableView.frame
+        self.tableView.backgroundView = imageView
         searchBarTextField.delegate = self
+        searchBarTextField.backgroundImage = UIImage()
+        searchBarTextField.placeholder = "Enter Ingredients here..."
+        setNeedsStatusBarAppearanceUpdate()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
+        // Hide the navigation bar for current view controller
+        self.navigationController?.isNavigationBarHidden = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        // Show the navigation bar on other view controllers
+        self.navigationController?.isNavigationBarHidden = false
     }
     
     override func didReceiveMemoryWarning() {
@@ -72,7 +93,7 @@ final class SearchRecipesTableViewController: UITableViewController, UISearchBar
         let hit = RecipeController.shared.hits[indexPath.row]
         
         RecipeController.shared.fetchImage(with: hit.recipe.image) { (image) in
-            DispatchQueue.main.async {
+            DispatchQueue.main.async { [unowned self] in
                 cell.hit = hit
                 if let currentIndexPath = self.tableView?.indexPath(for: cell), currentIndexPath == indexPath {
                     cell.displayImage = image
@@ -101,6 +122,14 @@ final class SearchRecipesTableViewController: UITableViewController, UISearchBar
                 
             }
         }
+    }
+    
+    // MARK: - AlertController
+    private func noRecipeFoundAlert() {
+        let alert = UIAlertController(title: "No Results", message: "Could not find Recipe for what you are looking for please try again", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
+        alert.addAction(okAction)
+        present(alert, animated: true, completion: nil)
     }
 }
 

@@ -17,7 +17,7 @@ final class RecipeTableViewCell: UITableViewCell {
         }
     }
     
-    var displayImage: UIImage? {
+    weak var displayImage: UIImage? {
         didSet {
             updateView()
         }
@@ -29,64 +29,48 @@ final class RecipeTableViewCell: UITableViewCell {
         self.customLabel(label: ingredientsLabel)
         self.customImageView(imageView: displayImageView)
         displayImageView.blackfade(displayImageView)
-        //blackfade(displayImageView)
+
     }
     
     @IBOutlet weak private var titleLabel: PaddingLabel!
     @IBOutlet weak private var displayImageView: UIImageView!
     @IBOutlet weak private var ingredientsLabel: PaddingLabel!
     
+    @IBOutlet weak private var titleVisualEffectsLabel: CustomVisualEffect!
+    @IBOutlet weak private var ingredientsVisualEffectsLabel: CustomVisualEffect!
+   
     private func updateView() {
-//        DispatchQueue.main.async { [weak self] in
         
-            guard let hit = self.hit else { return }
-            guard let title = self.titleLabel, let ingredients = self.ingredientsLabel, var imageView = self.displayImageView else { return }
-            if let displayImage = self.displayImage {
-                displayImageView.image = displayImage
-            } else {
-                displayImageView.image = nil           }
-            print(hit.recipe.title)
+        guard let hit = self.hit else { return }
+        guard let title = self.titleLabel, let ingredients = self.ingredientsLabel, var imageView = self.displayImageView else { return }
+        if let displayImage = self.displayImage {
+            imageView.image = displayImage
+        } else {
+            imageView.image = nil           }
+        print(hit.recipe.title)
         
-            title.text = hit.recipe.title
-            self.ingredientsLabel.text = "Ingredients: \(hit.recipe.ingredients.count)"
-            //self.displayImageView.addSubview(title)
-        
+        title.text = hit.recipe.title
+        self.ingredientsLabel.text = "Ingredients: \(hit.recipe.ingredients.count)"
         
     }
     
-    func customLabel(label: PaddingLabel) {
+    private func customLabel(label: PaddingLabel) {
         
         label.layer.cornerRadius = 12
         label.layer.borderWidth = 2
         label.layer.borderColor = ColorScheme.shared.bunting.cgColor
-        label.backgroundColor = ColorScheme.shared.jungleMist
+        label.backgroundColor = UIColor.clear
+        label.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
         label.layer.masksToBounds = true
     }
     
-    func customImageView(imageView: UIImageView) {
+    private func customImageView(imageView: UIImageView) {
         imageView.layer.cornerRadius = 12
         imageView.layer.borderWidth = 4
         imageView.layer.borderColor = ColorScheme.shared.bunting.cgColor
         imageView.layer.masksToBounds = true
         
     }
-//    func blackfade(_ imageView: UIImageView) {
-//        let view = UIView(frame: CGRect(x: imageView.frame.origin.x - 20, y: imageView.frame.origin.y, width: imageView.frame.size.width * 1.2, height: imageView.frame.size.height))
-//        
-//        let gradient = CAGradientLayer()
-//    
-//        gradient.frame = view.frame
-//        
-//        gradient.colors = [UIColor.clear.cgColor, UIColor.clear.cgColor, UIColor.black.cgColor]
-//        
-//        gradient.locations = [0.0, 0.5, 1.0]
-//        
-//        view.layer.insertSublayer(gradient, at: 0)
-//        
-//        imageView.addSubview(view)
-//        imageView.bringSubview(toFront: view)
-//    }
-
 }
 
 

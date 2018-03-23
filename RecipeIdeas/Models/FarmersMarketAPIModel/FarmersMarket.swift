@@ -20,7 +20,7 @@ final class MarketIdentifier: Codable {
 
 
 final class MarketDetails: Codable {
-    var marketdetails: Details?
+    weak var marketdetails: Details?
 }
 
 final class Details: Codable {

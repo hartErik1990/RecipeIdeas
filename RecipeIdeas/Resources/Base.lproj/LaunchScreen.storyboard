@@ -26,8 +26,8 @@
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="7KP-Fx-f4n" secondAttribute="trailing" id="6gE-OA-lrt"/>
                             <constraint firstItem="7KP-Fx-f4n" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="dia-35-9RL"/>
-                            <constraint firstItem="7KP-Fx-f4n" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="kKi-14-kAh"/>
-                            <constraint firstItem="7KP-Fx-f4n" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="-20" id="vxC-GQ-CpZ"/>
+                            <constraint firstItem="7KP-Fx-f4n" firstAttribute="bottom" secondItem="Ze5-6b-2t3" secondAttribute="bottom" id="kKi-14-kAh"/>
+                            <constraint firstItem="7KP-Fx-f4n" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="vxC-GQ-CpZ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>

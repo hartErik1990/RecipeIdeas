@@ -21,10 +21,6 @@ final class WebViewController: UIViewController {
         updateWebView()
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     private func updateWebView() {
         DispatchQueue.main.async { [weak self] in
             guard let urlString = self?.urlString else { return }

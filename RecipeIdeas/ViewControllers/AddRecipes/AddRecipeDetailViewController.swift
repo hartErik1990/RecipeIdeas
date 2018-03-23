@@ -12,14 +12,14 @@ import Photos
 final class AddRecipeDetailViewController: ShiftableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     
     // MARK: - Properties
-    var addedRecipe: AddRecipe?
+    weak var addedRecipe: AddRecipe?
     
     weak private var delegate: AddRecipeDetailViewControllerDelegate?
     
     @IBOutlet weak private var addRecipeImage: UIImageView!
     @IBOutlet weak private var titleTextfield: UITextField!
-    @IBOutlet weak private var ingredientsTextView: UITextView!
-    @IBOutlet weak private var directionsTextView: UITextView!
+    @IBOutlet weak private var ingredientsTextView: PlaceholderTextView!
+    @IBOutlet weak private var directionsTextView: PlaceholderTextView!
     @IBOutlet weak private var addImageButton: UIButton!
     
     private let imagePicker = UIImagePickerController()
@@ -33,9 +33,10 @@ final class AddRecipeDetailViewController: ShiftableViewController, UIImagePicke
         customDesign()
         customTextView(textView: ingredientsTextView)
         customTextView(textView: directionsTextView)
+        
         updateViews()
-
     }
+    
   
     private func updateViews() {
         guard let addedRecipe = addedRecipe else { return }
@@ -50,18 +51,20 @@ final class AddRecipeDetailViewController: ShiftableViewController, UIImagePicke
     
     private func customDesign() {
     
-    //customtextField
-    titleTextfield.layer.cornerRadius = 12
-    titleTextfield.layer.borderWidth = 2
-    titleTextfield.layer.borderColor = ColorScheme.shared.bunting.cgColor
-    titleTextfield.backgroundColor = navigationController?.navigationBar.backgroundColor
-    titleTextfield.layer.masksToBounds = true
+        //customtextField
+        let border = CALayer()
+        let width = CGFloat(2.0)
+        border.borderColor = UIColor.darkGray.cgColor
+        border.frame = CGRect(x: 0, y: titleTextfield.frame.size.height - width, width:  titleTextfield.frame.size.width, height: titleTextfield.frame.size.height)
+        border.borderWidth = width
+        titleTextfield.layer.addSublayer(border)
+        titleTextfield.layer.masksToBounds = true
     
-    //customImage() {
-    addRecipeImage.layer.cornerRadius = 12
-    addRecipeImage.layer.borderWidth = 3
-    addRecipeImage.layer.borderColor = ColorScheme.shared.bunting.cgColor
-    addRecipeImage.layer.masksToBounds = true
+        //customImage()
+        addRecipeImage.layer.cornerRadius = 12
+        addRecipeImage.layer.borderWidth = 3
+        addRecipeImage.layer.borderColor = ColorScheme.shared.bunting.cgColor
+        addRecipeImage.layer.masksToBounds = true
         
     }
     
@@ -89,10 +92,15 @@ final class AddRecipeDetailViewController: ShiftableViewController, UIImagePicke
     @IBAction func saveButtonTapped(_ sender: Any) {
         
         guard let title = titleTextfield.text, let ingredients = ingredientsTextView.text, let directions = directionsTextView.text, let imageData = addRecipeImage.image else { return }
-        if title == "" {
+        func oneWhiteSpace(input: String) -> String {
+            return input.replacingOccurrences(of: " +", with: " ",
+                                              options: .regularExpression, range: nil)
+        }
+        let oneSpaceTitle = oneWhiteSpace(input: title)
+        if title == "" || oneSpaceTitle == " " {
             noRecipeTitleAlert()
-        } else {
-            let image = Data(UIImageJPEGRepresentation(imageData, 0.9)!)
+        } else { 
+            let image = Data(UIImageJPEGRepresentation(imageData, 0.5)!)
             //For UpdatingViews
             if let addedRecipe = addedRecipe {
                 AddRecipeController.shared.updateRecipe(with: addedRecipe, title: title, ingredients: ingredients, directions: directions, imageData: image)
@@ -104,7 +112,7 @@ final class AddRecipeDetailViewController: ShiftableViewController, UIImagePicke
     }
     
     //ImagePicker
-    @IBAction func addImageButtonTapped(_ sender: Any) {
+    @IBAction private func addImageButtonTapped(_ sender: Any) {
         
         func openCamera(action: UIAlertAction){
             guard UIImagePickerController.isSourceTypeAvailable(.camera) == true else {

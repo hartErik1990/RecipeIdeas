@@ -12,13 +12,12 @@ final class DetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        print(marketDetails?.Address)
+   
         updateViews()
-        // Do any additional setup after loading the view.
     }
     
-    var marketDetails: Details?
+    weak var marketDetails: Details?
+    weak var marketID: MarketIdentifier?
     
     @IBOutlet weak private var farmersMarketImageView: UIImageView!
     @IBOutlet weak private var addressLabel: PaddingLabel!
@@ -29,15 +28,28 @@ final class DetailViewController: UIViewController {
     @IBOutlet weak private var titleForScheduleLabel: PaddingLabel!
     @IBOutlet weak private var titleForProductsLabel: PaddingLabel!
     
+    @IBOutlet weak private var farmersMarketTitleLabel: UINavigationItem!
+    @IBOutlet weak private var addressVisualEffectView: CustomVisualEffect!
+    @IBOutlet weak private var scheduleVisualEffectView: CustomVisualEffect!
+    @IBOutlet weak private var productVisualEffectView: CustomVisualEffect!
+    
+    @IBOutlet weak private var addressTitleVisualEffectsLabel: CustomVisualEffect!
+    @IBOutlet weak private var scheduleTitleVisualEffectsLabel: CustomVisualEffect!
+    @IBOutlet weak private var productsTitleVisualEffectsLabel: CustomVisualEffect!
     
     private func updateViews() {
         
-        custumLabel(label: addressLabel)
-        custumLabel(label: scheduleLabel)
-        custumLabel(label: titleForAddressLabel)
-        custumLabel(label: titleForScheduleLabel)
-        custumLabel(label: titleForProductsLabel)
+        customLargeLabel(label: addressLabel)
+        customLargeLabel(label: scheduleLabel)
+        customSmallLabel(label: titleForAddressLabel)
+        customSmallLabel(label: titleForScheduleLabel)
+        customSmallLabel(label: titleForProductsLabel)
         customDesign()
+        guard let newMarketName = marketID?.marketname else { return }
+        let resultWithOutNumbers = newMarketName.index(newMarketName.startIndex, offsetBy: 4)
+        let resultBackToString = newMarketName[resultWithOutNumbers...]
+        farmersMarketTitleLabel.title = resultBackToString.components(separatedBy: "")[0]
+        
         addressLabel.text = marketDetails?.Address
         scheduleLabel.text = marketDetails?.Schedule?
             .replacingOccurrences(of: ";<br> ", with: "")
@@ -47,23 +59,25 @@ final class DetailViewController: UIViewController {
         productsTextView.text = marketDetails?.Products?.replacingOccurrences(of: "; ", with: "\n")
     }
     
-    private func custumLabel(label: PaddingLabel) {
+    private func customLargeLabel(label: PaddingLabel) {
         label.layer.cornerRadius = 12
         label.layer.borderWidth = 3
         label.layer.borderColor = ColorScheme.shared.bunting.cgColor
-        label.backgroundColor = ColorScheme.shared.slateGrey
+        //label.backgroundColor = ColorScheme.shared.slateGrey
+        label.layer.masksToBounds = true
+    }
+    private func customSmallLabel(label: PaddingLabel) {
+        label.layer.cornerRadius = 12
+        label.layer.borderWidth = 3
+        label.layer.borderColor = ColorScheme.shared.bunting.cgColor
+        label.backgroundColor = UIColor.clear
         label.layer.masksToBounds = true
     }
     private func customDesign() {
-        //customImage()
-        farmersMarketImageView.layer.cornerRadius = 12
-        farmersMarketImageView.layer.borderWidth = 3
-        farmersMarketImageView.layer.borderColor = ColorScheme.shared.bunting.cgColor
-        farmersMarketImageView.layer.masksToBounds = true
-        
+
         //  customTextView()
         productsTextView.layer.cornerRadius = 12
-        productsTextView.layer.borderWidth = 1
+        productsTextView.layer.borderWidth = 2.5
         productsTextView.layer.borderColor = ColorScheme.shared.bunting.cgColor
         productsTextView.layer.masksToBounds = true
     }

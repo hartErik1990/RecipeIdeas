@@ -18,6 +18,7 @@ final class RecipeViewController: UIViewController {
     @IBOutlet weak private var ingredientsTextView: UITextView!
     @IBOutlet weak private var directionButtonLabel: CustomButton!
     @IBOutlet weak private var titleLabel: UINavigationItem!
+    @IBOutlet weak private var blurEffect: CustomVisualEffect!
     
     private func updateViews() {
         guard let hit = hit else { return }
@@ -40,12 +41,7 @@ final class RecipeViewController: UIViewController {
         updateViews()
         custumDesign()
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
+
     @IBAction private func directionsButtonTapped(_ sender: Any) {
         if let viewController = storyboard!.instantiateViewController(withIdentifier: "WebViewController") as? WebViewController {
             DispatchQueue.main.async { [weak self] in
@@ -75,15 +71,10 @@ final class RecipeViewController: UIViewController {
         ingredientsTextView.layer.borderWidth = 3
         ingredientsTextView.layer.borderColor = ColorScheme.shared.bunting.cgColor
         ingredientsTextView.layer.masksToBounds = true
-        
-        //custumButton
-//        directionButtonLabel.layer.cornerRadius = 12
-//        directionButtonLabel.backgroundColor = ColorScheme.shared.crusta
-//        directionButtonLabel.layer.borderWidth = 3
-//        directionButtonLabel.layer.borderColor = ColorScheme.shared.bunting.cgColor
-//        directionButtonLabel.layer.masksToBounds = true
+  
     }
 }
+
 
 
 

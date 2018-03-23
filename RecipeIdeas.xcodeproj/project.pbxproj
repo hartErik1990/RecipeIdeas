@@ -21,6 +21,12 @@
 		442CA0B120466A9A00823035 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442CA0B020466A9A00823035 /* WebViewController.swift */; };
 		442CA0B42047236100823035 /* AddRecipeListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442CA0B32047236100823035 /* AddRecipeListTableViewController.swift */; };
 		442CA0BC20472F7100823035 /* RecipeIdeas.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 442CA0BA20472F7100823035 /* RecipeIdeas.xcdatamodeld */; };
+		443326CA20637EBF00F16885 /* CustomTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443326C920637EBF00F16885 /* CustomTextView.swift */; };
+		443326CD206423B500F16885 /* CloudflareMobileSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 443326CC206423B500F16885 /* CloudflareMobileSDK.framework */; };
+		443326CF206423DC00F16885 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 443326CE206423DC00F16885 /* SystemConfiguration.framework */; };
+		443326D1206423E900F16885 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 443326D0206423E900F16885 /* CoreTelephony.framework */; };
+		443326D3206423F700F16885 /* libresolv.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 443326D2206423F700F16885 /* libresolv.9.tbd */; };
+		443326D72064286A00F16885 /* CloudflareMobileSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 443326D62064286A00F16885 /* CloudflareMobileSDK.framework */; };
 		4440FC6B20485E2A006EBF74 /*  ShiftableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4440FC6A20485E2A006EBF74 /*  ShiftableViewController.swift */; };
 		44837DEE2048AC8C0075EF62 /* AddRecipeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44837DED2048AC8C0075EF62 /* AddRecipeTableViewCell.swift */; };
 		44837E132049B28C0075EF62 /* ColorScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44837E122049B28C0075EF62 /* ColorScheme.swift */; };
@@ -56,6 +62,13 @@
 		442CA0B020466A9A00823035 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		442CA0B32047236100823035 /* AddRecipeListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRecipeListTableViewController.swift; sourceTree = "<group>"; };
 		442CA0BB20472F7100823035 /* RecipeIdeas.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RecipeIdeas.xcdatamodel; sourceTree = "<group>"; };
+		443326C920637EBF00F16885 /* CustomTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextView.swift; sourceTree = "<group>"; };
+		443326CC206423B500F16885 /* CloudflareMobileSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudflareMobileSDK.framework; path = ../../../../Downloads/CloudflareMobileSDK.framework; sourceTree = "<group>"; };
+		443326CE206423DC00F16885 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		443326D0206423E900F16885 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		443326D2206423F700F16885 /* libresolv.9.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.9.tbd; path = usr/lib/libresolv.9.tbd; sourceTree = SDKROOT; };
+		443326D62064286A00F16885 /* CloudflareMobileSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CloudflareMobileSDK.framework; sourceTree = "<group>"; };
+		443326D8206428C400F16885 /* RecipeIdeas-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RecipeIdeas-Bridging-Header.h"; sourceTree = "<group>"; };
 		4440FC6A20485E2A006EBF74 /*  ShiftableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = " ShiftableViewController.swift"; sourceTree = "<group>"; };
 		44837DED2048AC8C0075EF62 /* AddRecipeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AddRecipeTableViewCell.swift; path = RecipeIdeas/ViewControllers/RecipeAPIViewControllers/AddRecipeTableViewCell.swift; sourceTree = SOURCE_ROOT; };
 		44837E122049B28C0075EF62 /* ColorScheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorScheme.swift; sourceTree = "<group>"; };
@@ -79,6 +92,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				443326D3206423F700F16885 /* libresolv.9.tbd in Frameworks */,
+				443326D1206423E900F16885 /* CoreTelephony.framework in Frameworks */,
+				443326CF206423DC00F16885 /* SystemConfiguration.framework in Frameworks */,
+				443326CD206423B500F16885 /* CloudflareMobileSDK.framework in Frameworks */,
+				443326D72064286A00F16885 /* CloudflareMobileSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -88,8 +106,10 @@
 		44254E402044C30A005B45BC = {
 			isa = PBXGroup;
 			children = (
+				443326D62064286A00F16885 /* CloudflareMobileSDK.framework */,
 				44254E4B2044C30A005B45BC /* RecipeIdeas */,
 				44254E4A2044C30A005B45BC /* Products */,
+				443326CB206423B500F16885 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -112,6 +132,7 @@
 				44254E652044C8C0005B45BC /* ViewControllers */,
 				44837DEC2048AC0D0075EF62 /* Views */,
 				44254E6E2044CB4E005B45BC /* Resources */,
+				443326D8206428C400F16885 /* RecipeIdeas-Bridging-Header.h */,
 			);
 			path = RecipeIdeas;
 			sourceTree = "<group>";
@@ -178,7 +199,6 @@
 		44282CE42053111A001D6800 /* MainViewController */ = {
 			isa = PBXGroup;
 			children = (
-				44CB226920599AA200C50F7F /* CustomImage.swift */,
 				44282CE220531115001D6800 /* MainViewController.swift */,
 			);
 			path = MainViewController;
@@ -236,6 +256,17 @@
 				44C4AD3B204737A500752CFF /* CoreDataStack.swift */,
 			);
 			path = AddRecipeModel;
+			sourceTree = "<group>";
+		};
+		443326CB206423B500F16885 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				443326D2206423F700F16885 /* libresolv.9.tbd */,
+				443326D0206423E900F16885 /* CoreTelephony.framework */,
+				443326CE206423DC00F16885 /* SystemConfiguration.framework */,
+				443326CC206423B500F16885 /* CloudflareMobileSDK.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		44837DE8204862C10075EF62 /* HelperViewControllers */ = {
@@ -301,6 +332,8 @@
 		44A46BA42057195B0041E812 /* HelperLabels */ = {
 			isa = PBXGroup;
 			children = (
+				44CB226920599AA200C50F7F /* CustomImage.swift */,
+				443326C920637EBF00F16885 /* CustomTextView.swift */,
 				44A46BA5205719850041E812 /* CustomUIButton.swift */,
 				44A46BA720576F680041E812 /* CustomUILabel.swift */,
 			);
@@ -339,6 +372,7 @@
 				TargetAttributes = {
 					44254E482044C30A005B45BC = {
 						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = 0920;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -398,6 +432,7 @@
 				44C4AD3E2047382900752CFF /* Extensions+Convenience.swift in Sources */,
 				44C4AD3C204737A500752CFF /* CoreDataStack.swift in Sources */,
 				44837E132049B28C0075EF62 /* ColorScheme.swift in Sources */,
+				443326CA20637EBF00F16885 /* CustomTextView.swift in Sources */,
 				442CA0B120466A9A00823035 /* WebViewController.swift in Sources */,
 				44254E682044C8FF005B45BC /* RecipeController.swift in Sources */,
 				44A46BA6205719850041E812 /* CustomUIButton.swift in Sources */,
@@ -543,12 +578,19 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B7X639V2D7;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "$(SRCROOT)/RecipeIdeas/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = erikhart1990.RecipeIdeas;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "RecipeIdeas/RecipeIdeas-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -558,12 +600,18 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B7X639V2D7;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "$(SRCROOT)/RecipeIdeas/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = erikhart1990.RecipeIdeas;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "RecipeIdeas/RecipeIdeas-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

@@ -35,26 +35,20 @@ final class AddRecipeListTableViewController: UITableViewController, NSFetchedRe
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        let imageView = UIImageView(image: UIImage(named: "Bread"))
+        imageView.frame = self.tableView.frame
+        self.tableView.backgroundView = imageView
         fetchedResultsController.delegate = self
         performFetch()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-    
     // MARK: - Table view data source
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
     }
-    
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
+
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
+        
         return fetchedResultsController.sections?[section].numberOfObjects ?? 0
     }
     
@@ -66,10 +60,9 @@ final class AddRecipeListTableViewController: UITableViewController, NSFetchedRe
         guard let data = addedRecipe.imageData else { return UITableViewCell() }
         cell.addRecipeImageview?.image = UIImage(data: data)
         cell.addRecipeImageview.blackfade(cell.addRecipeImageview)
-       // cell.addRecipeImageview.addSubview(cell.titleLabel)
         cell.customLabel()
         cell.customImage()
-       // cell.updateViews()
+       
         return cell
     }
     
