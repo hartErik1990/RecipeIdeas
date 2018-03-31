@@ -21,6 +21,20 @@ final class MainViewController: UIViewController, UITextViewDelegate {
         randomQuote()
         
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        //tableView.reloadData()
+        // Hide the navigation bar for current view controller
+        self.navigationController?.isNavigationBarHidden = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        // Show the navigation bar on other view controllers
+        self.navigationController?.isNavigationBarHidden = false
+        self.view = nil 
+    }
  
     private func randomQuote() {
         let name = QuotesFromCooks.init().qoutes[Int(arc4random_uniform(UInt32(QuotesFromCooks.init().qoutes.count)))]

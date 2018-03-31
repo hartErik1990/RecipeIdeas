@@ -14,13 +14,13 @@ final class MapViewController: UIViewController, MKMapViewDelegate , UISearchBar
     
     // MARK: - Properties
     @IBOutlet private weak var mapView: MKMapView!
+    @IBOutlet weak var getLocationButton: CustomButton!
 
     private weak var location = CLLocation()
     private weak var details: Details?
     private weak var marketID: MarketIdentifier?
     let clLocationManager = CLLocationManager()
-    @IBOutlet weak var getLocationButton: CustomButton!
-    
+
     // MARK: - assigning Delegate and Authorization
     func locationManagerDelegateAndAuthorization() {
         clLocationManager.delegate = self
@@ -50,60 +50,66 @@ final class MapViewController: UIViewController, MKMapViewDelegate , UISearchBar
             self.addPulseTo(center: getLocationButton.center, withRadius: 100, withColor: #colorLiteral(red: 0, green: 0.4784313725, blue: 1, alpha: 1).cgColor)
         
     }
-    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        print(navigationController?.viewControllers.count)
+        if navigationController?.viewControllers.count != 2 {
+            self.view = nil
+        } else {
+            print("This is doing its job correctly")
+        }
+    }
     // MARK: - LocationManager Delegate method
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation])
     {
         guard let location = locations.first else { return }
 
-        let span:MKCoordinateSpan = MKCoordinateSpanMake(0.01, 0.01)
-        let myLocation:CLLocationCoordinate2D = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude)
-        let region:MKCoordinateRegion = MKCoordinateRegionMake(myLocation, span)
+        let span: MKCoordinateSpan = MKCoordinateSpanMake(2, 2)
+        let myLocation: CLLocationCoordinate2D = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude)
+        let region: MKCoordinateRegion = MKCoordinateRegionMake(myLocation, span)
         mapView.setRegion(region, animated: true)
         mapView.showsUserLocation = true
     }
     
     @IBAction func getLocationButtonTapped(_ sender: Any) {
         
-        guard let locValue: CLLocationCoordinate2D = clLocationManager.location?.coordinate else { return }
+        guard let locationValue: CLLocationCoordinate2D = clLocationManager.location?.coordinate else { return }
         
         
         DispatchQueue.main.async { [weak self] in
-        MarketController.shared.getLocation(With: locValue.latitude, and: locValue.longitude) { (results, error) in
+        MarketController.shared.getLocation(With: locationValue.latitude, and: locationValue.longitude) { (results, error) in
                 
                 self?.getResultsAndErrorWithFetchCall(with: results, and: error)
-            
-            
+            }
             self?.clLocationManager.startUpdatingLocation()
             self?.getLocationButton.alpha = 0
             self?.getLocationButton.isEnabled = false
-            }
+            self?.mapView.showsUserLocation = true
         }
     }
     
     @IBAction func searchBarButtonTapped(_ sender: Any) {
+        mapView.showsUserLocation = false 
         let searchController = UISearchController(searchResultsController: nil)
         let searchBar = searchController.searchBar
         searchBar.delegate = self
         searchBar.placeholder = "Enter your zip..."
-        clLocationManager.delegate = nil
         mapView.removeAnnotations(mapView.annotations)
         present(searchController, animated: true, completion: nil)
-        //clLocationManager.delegate = self
+        
     }
 
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-    
+        
         dismiss(animated: true, completion: nil)
-            if let searchTerm = searchBar.text {
-                DispatchQueue.main.async { [weak self] in
-                MarketController.shared.fetchFarmersMarketData(with: searchTerm) { (results, error) in
-                    self?.getResultsAndErrorWithFetchCall(with: results, and: error)
-                }
+        if let searchTerm = searchBar.text {
+            
+            MarketController.shared.fetchFarmersMarketData(with: searchTerm) { (results, error) in
+                self.getResultsAndErrorWithFetchCall(with: results, and: error)
             }
         }
     }
-    
+
     // Loops through the results array and calls the function to
     private func getResultsAndErrorWithFetchCall(with results: FarmersMarketResults?, and error: Error?) {
         if let err = error { NSLog("error with fetching MarketData \(err.localizedDescription) \(#function)"); noZipcodeFoundAlert(); return }
@@ -119,6 +125,7 @@ final class MapViewController: UIViewController, MKMapViewDelegate , UISearchBar
                     self?.changeAddressToCoordinates(details: marketDetails, marketID: result)
                 }
             })
+            
         }
     }
     
@@ -138,7 +145,7 @@ final class MapViewController: UIViewController, MKMapViewDelegate , UISearchBar
             guard let lon = placemark?.location?.coordinate.longitude else { return }
             annotation.coordinate = CLLocationCoordinate2D(latitude: lat, longitude: lon)
             print(address)
-            let span = MKCoordinateSpanMake( 1, 1 )
+            let span = MKCoordinateSpanMake( 1, 1)
             let region = MKCoordinateRegionMake(annotation.coordinate, span)
             self.mapView.setRegion(region, animated: true)
         }
@@ -225,68 +232,7 @@ final class MapViewController: UIViewController, MKMapViewDelegate , UISearchBar
             pulse.backgroundColor = withColor
             self.view.layer.insertSublayer(pulse, below: self.view.layer)
     }
-    
-//    
-//    @IBAction func findProductsButtonTapped(_ sender: Any) {
-//        
-//        let alert = UIAlertController(title: "Look for Products", message: "look for products that are in your area", preferredStyle: .alert)
-//        
-//        var pruductsTextField = UITextField()
-//        
-//        alert.addTextField { (textField) in
-//            textField.placeholder = "Enter Products here..."
-//            pruductsTextField = textField
-//        }
-//        
-//        let addAction = UIAlertAction(title: "Search", style: .default) { (action) in
-//            guard let text = pruductsTextField.text, !text.isEmpty else { return }
-//            
-//            let products = text
-//            
-//            let details = Details().Products
-//            print(details)
-//            let productsArray =  details?.components(separatedBy: " ")
-//            
-//            func searchFor() -> Bool {
-//                let caseInSensitiveMarketProduct = details?.lowercased().replacingOccurrences(of: ",", with: "")
-//                let searchTerm = products
-//                let lowercasedSearchTerm = searchTerm.lowercased().replacingOccurrences(of: ",", with: "")
-//                
-//                let marketProductArray = caseInSensitiveMarketProduct?.components(separatedBy: " ")
-//                let searchTermArray = lowercasedSearchTerm.components(separatedBy: " ")
-//                
-//                var bool: Bool = false
-//                
-//                for product in marketProductArray! {
-//                    
-//                    if searchTermArray.contains(product) {
-//                        bool = true
-//                    }
-//                }
-//                
-//                return bool
-//            }
-//            
-//            
-//            self.viewDidLoad()
-//        }
-//        
-//        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-//        
-//        alert.addAction(addAction)
-//        alert.addAction(cancelAction)
-//        
-//        self.present(alert, animated: true, completion: nil)
-//        
-//    }
-//    
-//    
-//    
-//    
-//    
-//    
-//    
-//    
+
 }
 
 

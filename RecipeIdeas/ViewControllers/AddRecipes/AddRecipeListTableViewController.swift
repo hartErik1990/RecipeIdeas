@@ -41,7 +41,19 @@ final class AddRecipeListTableViewController: UITableViewController, NSFetchedRe
         fetchedResultsController.delegate = self
         performFetch()
     }
-
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+//        var segue: UIStoryboardSegue?
+//        if segue?.identifier == "toAddRecipeDetailVC" {
+//            if let destination = segue?.destination as? AddRecipeDetailViewController {
+//                print("YAYY it worked")
+//            }
+//        } else {
+            print("NO it didnt work")
+            self.view = nil
+       // }
+    }
     // MARK: - Table view data source
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100

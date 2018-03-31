@@ -10,22 +10,31 @@ import UIKit
 
 final class SearchRecipesTableViewController: UITableViewController, UISearchBarDelegate, UINavigationBarDelegate {
     
+    // MARK: - Properties
     @IBOutlet weak private var searchBarTextField: UISearchBar!
     
     private var hits = [Hit]()
     
+    // MARK: - activityIndicator
+    let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.whiteLarge)
+    
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        DispatchQueue.main.async { [unowned self] in
+        activityIndicator.startAnimating()
             self.searchBarTextField.backgroundImage = UIImage()
             guard let searchTerm = searchBar.text else { return }
-            searchBar.resignFirstResponder()
+        searchBar.resignFirstResponder()
             RecipeController.shared.fetchResults(with: searchTerm) { error in
+                DispatchQueue.main.async { [weak self] in
                 print(searchTerm)
                 if let err = error {
-                    NSLog("error with fetching MarketData \(err.localizedDescription) \(#function)"); return }
-                self.tableView.reloadData()
+                    NSLog("error with fetching MarketData \(err.localizedDescription) \(#function)"); return
+                    
+                }
+                
+                self?.activityIndicator.stopAnimating()
+                self?.tableView.reloadData()
                 if RecipeController.shared.hits.count == 0 {
-                    return self.noRecipeFoundAlert()
+                    return (self?.noRecipeFoundAlert())!
                 }
             }
         }
@@ -43,12 +52,16 @@ final class SearchRecipesTableViewController: UITableViewController, UISearchBar
     }
     
     // MARK: - turn the
+
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
-  
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        
         
         let imageView = UIImageView(image: UIImage(named: "Burger"))
         imageView.frame = self.tableView.frame
@@ -57,6 +70,10 @@ final class SearchRecipesTableViewController: UITableViewController, UISearchBar
         searchBarTextField.backgroundImage = UIImage()
         searchBarTextField.placeholder = "Enter Ingredients here..."
         setNeedsStatusBarAppearanceUpdate()
+        activityIndicator.center = CGPoint(x: view.center.x, y: view.center.y)
+        activityIndicator.color = UIColor.lightGray
+        view.addSubview(activityIndicator)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -65,10 +82,11 @@ final class SearchRecipesTableViewController: UITableViewController, UISearchBar
         // Hide the navigation bar for current view controller
         self.navigationController?.isNavigationBarHidden = true
     }
-    
+
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         // Show the navigation bar on other view controllers
+        self.view = nil
         self.navigationController?.isNavigationBarHidden = false
     }
     

@@ -18,7 +18,7 @@ final class MarketAnnotation: NSObject, MKAnnotation {
     var title: String?
     
     var coordinate: CLLocationCoordinate2D
-    init(marketDetails: Details, marketID: MarketIdentifier, lat: Double = 0.0, lon: Double = 0.0) {
+    init(marketDetails: Details, marketID: MarketIdentifier = MarketIdentifier(), lat: Double = 0.0, lon: Double = 0.0) {
         self.marketDetail = marketDetails
         self.marketID = marketID
         self.lat = lat

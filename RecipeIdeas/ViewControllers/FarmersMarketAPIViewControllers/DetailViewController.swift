@@ -7,14 +7,22 @@
 //
 
 import UIKit
+import CoreLocation
+import MapKit
 
-final class DetailViewController: UIViewController {
+final class DetailViewController: UIViewController, CLLocationManagerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-   
+        clManager.delegate = self
         updateViews()
     }
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        print(navigationController?.viewControllers.count)
+        
+    }
+    let clManager = CLLocationManager()
     
     weak var marketDetails: Details?
     weak var marketID: MarketIdentifier?
@@ -23,7 +31,6 @@ final class DetailViewController: UIViewController {
     @IBOutlet weak private var addressLabel: PaddingLabel!
     @IBOutlet weak private var scheduleLabel: PaddingLabel!
     @IBOutlet weak private var productsTextView: UITextView!
-    
     @IBOutlet weak private var titleForAddressLabel: PaddingLabel!
     @IBOutlet weak private var titleForScheduleLabel: PaddingLabel!
     @IBOutlet weak private var titleForProductsLabel: PaddingLabel!
@@ -32,10 +39,11 @@ final class DetailViewController: UIViewController {
     @IBOutlet weak private var addressVisualEffectView: CustomVisualEffect!
     @IBOutlet weak private var scheduleVisualEffectView: CustomVisualEffect!
     @IBOutlet weak private var productVisualEffectView: CustomVisualEffect!
-    
     @IBOutlet weak private var addressTitleVisualEffectsLabel: CustomVisualEffect!
     @IBOutlet weak private var scheduleTitleVisualEffectsLabel: CustomVisualEffect!
     @IBOutlet weak private var productsTitleVisualEffectsLabel: CustomVisualEffect!
+    @IBOutlet weak var addressButton: UIButton!
+    
     
     private func updateViews() {
         
@@ -81,5 +89,38 @@ final class DetailViewController: UIViewController {
         productsTextView.layer.borderColor = ColorScheme.shared.bunting.cgColor
         productsTextView.layer.masksToBounds = true
     }
+    
+    // segue to the apple map view
+    @IBAction func addressButtonColorChanged(_ sender: Any) {
+        addressLabel.textColor = UIColor.blue
+    }
+    
+    @IBAction func addressButtonTapped(_ sender: Any) {
+        addressLabel.textColor = UIColor.black
+        
+        guard let marketResult = marketDetails?.GoogleLink?.replacingOccurrences( of:"[^0.0-9, -]", with: "", options: .regularExpression) else { return }
+        let newResult = marketResult.replacingOccurrences(of: "220-", with: " -")
+        let indexStartOfText = newResult.index(newResult.startIndex, offsetBy: 2)
+        
+        let substring1 = newResult[indexStartOfText...]
+        let indexEndOfText = substring1.index(substring1.endIndex, offsetBy: -6)
+        let substring2 = substring1[..<indexEndOfText]
+        
+        let stringedArray = substring2.components(separatedBy: " ")
+        guard let lat = Double(stringedArray[0]) else { return }
+        guard let lon = Double(stringedArray[1]) else { return }
+
+        let regionDistance: CLLocationDistance = 1000
+        let coordinates = CLLocationCoordinate2DMake(lat, lon)
+        let regionSpan = MKCoordinateRegionMakeWithDistance(coordinates, regionDistance, regionDistance)
+        
+        let options = [MKLaunchOptionsMapCenterKey: NSValue(mkCoordinate: regionSpan.center), MKLaunchOptionsMapSpanKey: NSValue(mkCoordinateSpan: regionSpan.span)]
+        let placemark = MKPlacemark(coordinate: coordinates)
+        let mapItem = MKMapItem(placemark: placemark)
+        mapItem.name = marketDetails?.Address
+        mapItem.openInMaps(launchOptions: options)
+       
+    }
+    
 }
 
