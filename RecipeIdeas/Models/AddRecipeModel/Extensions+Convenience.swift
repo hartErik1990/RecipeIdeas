@@ -10,6 +10,7 @@ import Foundation
 import CoreData
 
 extension AddRecipe {
+    // Makes sure i use this with the @discardableResult
     @discardableResult convenience init(title: String, ingredients: String, directions: String, imageData: Data, context: NSManagedObjectContext = CoreDataStack.context) {
         self.init(context: context)
         

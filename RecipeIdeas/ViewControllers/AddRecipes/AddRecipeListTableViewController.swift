@@ -9,9 +9,11 @@
 import UIKit
 import CoreData
 
-final class AddRecipeListTableViewController: UITableViewController, NSFetchedResultsControllerDelegate {
+final class AddRecipeListTableViewController: UITableViewController, NSFetchedResultsControllerDelegate, UINavigationBarDelegate {
     
     // MARK: - Properties
+    @IBOutlet weak private var addRecipesButton: UIBarButtonItem!
+    @IBOutlet weak private var navigationItemTitle: UINavigationItem!
     private let fetchedResultsController: NSFetchedResultsController<AddRecipe> = {
         
         let fetchRequest: NSFetchRequest<AddRecipe> = AddRecipe.fetchRequest()
@@ -30,37 +32,57 @@ final class AddRecipeListTableViewController: UITableViewController, NSFetchedRe
             print("Error preformFetch failed :\(error.localizedDescription)")
         }
     }
-    
-    @IBOutlet weak private var addRecipesButton: UIBarButtonItem!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         let imageView = UIImageView(image: UIImage(named: "Bread"))
         imageView.frame = self.tableView.frame
         self.tableView.backgroundView = imageView
+        setupNavigationBlur()
+        changeStatusBarColor()
         fetchedResultsController.delegate = self
         performFetch()
     }
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
-//        var segue: UIStoryboardSegue?
-//        if segue?.identifier == "toAddRecipeDetailVC" {
-//            if let destination = segue?.destination as? AddRecipeDetailViewController {
-//                print("YAYY it worked")
-//            }
-//        } else {
-            print("NO it didnt work")
-            self.view = nil
-       // }
+        self.view = nil
     }
-    // MARK: - Table view data source
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
+    
+    func changeStatusBarColor() {
+        navigationController?.navigationBar.barStyle = .black
+        navigationController?.navigationBar.isTranslucent = true
+    }
+    
+    func setupNavigationBlur() {
+        let appTitleImage = UIImage(named: "TitleOfApp")
+        let imageView = UIImageView(image: appTitleImage)
+        navigationItemTitle.titleView = imageView
+        guard let width = navigationController?.navigationBar.bounds.width, let height = navigationController?.navigationBar.bounds.height else { return }
+        let visualEffectView   = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
+        visualEffectView.frame = CGRect(x: 0, y: -44, width: width, height: height * 2)
+        print(visualEffectView.frame)
+        self.navigationController?.navigationBar.isTranslucent = true
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController?.navigationBar.addSubview(visualEffectView)
+        self.navigationController?.navigationBar.sendSubview(toBack: visualEffectView)
     }
 
+    // MARK: - Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toAddRecipeDetailVC" {
+            if let destination = segue.destination as? AddRecipeDetailViewController, let indexPath = tableView.indexPathForSelectedRow {
+                let addedRecipe = fetchedResultsController.object(at: indexPath)
+                destination.addedRecipe = addedRecipe
+            }
+        }
+    }
+}
+
+extension AddRecipeListTableViewController {
+    
+    // MARK: - TableView Data Source
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         return fetchedResultsController.sections?[section].numberOfObjects ?? 0
     }
     
@@ -74,7 +96,7 @@ final class AddRecipeListTableViewController: UITableViewController, NSFetchedRe
         cell.addRecipeImageview.blackfade(cell.addRecipeImageview)
         cell.customLabel()
         cell.customImage()
-       
+        
         return cell
     }
     
@@ -85,21 +107,15 @@ final class AddRecipeListTableViewController: UITableViewController, NSFetchedRe
             AddRecipeController.shared.delete(recipe: addedRecipe)
         }
     }
-
-    // MARK: - Navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "toAddRecipeDetailVC" {
-            if let destination = segue.destination as? AddRecipeDetailViewController, let indexPath = tableView.indexPathForSelectedRow {
-                let addedRecipe = fetchedResultsController.object(at: indexPath)
-                destination.addedRecipe = addedRecipe
-            }
-        }
-    }
-   
 }
 
-
-
+extension AddRecipeListTableViewController {
+    
+    // MARK: - TableView Delegate
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100
+    }
+}
 
 
 

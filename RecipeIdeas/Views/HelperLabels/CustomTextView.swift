@@ -9,44 +9,36 @@
 import UIKit
 
 /// A textview that has a functioning placeholder like textField
-@IBDesignable
-class PlaceholderTextView: UITextView {
-    
-    //************************************
+@IBDesignable class PlaceholderTextView: UITextView {
+
     // MARK: - Properties
-    //************************************
     
     let placeholderLabel = UILabel()
     
-    @IBInspectable
-    var placeholder: String = "" {
+    @IBInspectable var placeholder: String = "" {
         didSet{
             placeholderLabel.text = placeholder
             updateView()
         }
     }
     
-    @IBInspectable
-    var placeholderColor: UIColor = UIColor.gray {
-        didSet{
+    @IBInspectable var placeholderColor: UIColor = UIColor.gray {
+        didSet  {
             updateView()
         }
     }
     
-    @IBInspectable
-    var placeholderFont: UIFont = UIFont(name: "Helvetica", size: 14)!{
-        didSet{
+    @IBInspectable var placeholderFont: UIFont = UIFont(name: "Helvetica", size: 14)! {
+        didSet {
             updateView()
         }
     }
     
     @IBInspectable
     var doesAddQuotations: Bool = false
-    
-    //************************************
+
     // MARK: - Life Cycle Methods
-    //************************************
-    
+
     override init(frame: CGRect, textContainer: NSTextContainer?) {
         super.init(frame: frame, textContainer: textContainer)
         commonInit()
@@ -57,7 +49,7 @@ class PlaceholderTextView: UITextView {
         commonInit()
     }
     
-    internal func commonInit(){
+    internal func commonInit() {
         observeTextViewChanges()
         placeholderLabel.numberOfLines = 0
         placeholderLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -70,7 +62,7 @@ class PlaceholderTextView: UITextView {
         updateView()
     }
     
-    deinit{
+    deinit {
         NotificationCenter.default.removeObserver(self,
                                                   name: NSNotification.Name.UITextViewTextDidBeginEditing,
                                                   object: nil)
@@ -81,21 +73,19 @@ class PlaceholderTextView: UITextView {
                                                   name: NSNotification.Name.UITextViewTextDidEndEditing,
                                                   object: nil)
     }
-    
-    //************************************
+
     // MARK: - Helper Methods
-    //************************************
     
     fileprivate func hidePlaceholderIfTextIsEmpty() {
         placeholderLabel.isHidden = !text.isEmpty
     }
     
-    func updateView(){
+    func updateView() {
         placeholderLabel.textColor = placeholderColor
         placeholderLabel.font = placeholderFont
         hidePlaceholderIfTextIsEmpty()
         
-        if doesAddQuotations{
+        if doesAddQuotations {
             removeQuotationsFromText()
             addQuotationsToText()
         }
@@ -115,27 +105,27 @@ class PlaceholderTextView: UITextView {
                                                name: NSNotification.Name.UITextViewTextDidEndEditing,
                                                object: self)
     }
-    
-    //************************************
+
     // MARK: - Text View Changes
-    //************************************
     
-    @objc internal func textDidBeginEditing(){
-        if doesAddQuotations{removeQuotationsFromText()}
+    @objc internal func textDidBeginEditing() {
+        if doesAddQuotations {
+            removeQuotationsFromText()
+        }
     }
     
-    @objc internal func textDidChange(){
+    @objc internal func textDidChange() {
         hidePlaceholderIfTextIsEmpty()
     }
     
-    @objc internal func textDidEndEditing(){
+    @objc internal func textDidEndEditing() {
         if text.isEmpty {return}
-        if doesAddQuotations{addQuotationsToText()}
+        if doesAddQuotations {
+            addQuotationsToText()
+        }
     }
-    
-    //************************************
+
     // MARK: - Constraints
-    //************************************
     
     private var placeholderLabelConstraints = [NSLayoutConstraint]()
     
@@ -165,7 +155,7 @@ class PlaceholderTextView: UITextView {
     
 }
 
-extension PlaceholderTextView{
+extension PlaceholderTextView {
     func addQuotationsToText(){
         guard !text.isEmpty else {return}
         text = text.trimmingCharacters(in: ["\""])
@@ -173,7 +163,7 @@ extension PlaceholderTextView{
         text.append("\"")
     }
     
-    func removeQuotationsFromText(){
+    func removeQuotationsFromText() {
         text = text.trimmingCharacters(in: ["\""])
     }
 }

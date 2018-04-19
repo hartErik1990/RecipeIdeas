@@ -2,12 +2,10 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "brooke-lark-200710-unsplash.jpg",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "brooke-lark-200710-unsplash-1.jpg",
       "scale" : "2x"
     },
     {

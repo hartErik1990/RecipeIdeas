@@ -10,6 +10,7 @@ import UIKit
 import CoreData
 
 extension AddRecipeListTableViewController {
+    
     func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         tableView.beginUpdates()
     }

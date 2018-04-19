@@ -11,8 +11,8 @@ import UIKit
 extension UIImageView {
     
     func blackfade(_ imageView: UIImageView) {
-        let view = UIView(frame: CGRect(x: imageView.frame.origin.x - 20, y: imageView.frame.origin.y, width: imageView.frame.size.width * 1.2, height: imageView.frame.size.height))
-        
+        let view = UIView(frame: CGRect(x: imageView.frame.origin.x - 8, y: imageView.frame.origin.y, width: UIScreen.main.bounds.width, height: imageView.frame.size.height))
+        print(view)
         let gradient = CAGradientLayer()
         
         gradient.frame = view.frame

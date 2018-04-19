@@ -31,7 +31,6 @@ final class MarketController {
             do {
                 let results = try JSONDecoder().decode(FarmersMarketResults.self, from: data)
                 completion(results, nil)
-                
             } catch {
                 completion(nil, error)
                 NSLog("Error with URLSession in fetchFarmersMarketData \(error.localizedDescription)")
@@ -40,8 +39,8 @@ final class MarketController {
         datatask.resume()
     }
     
-    func getLocation(With lat: Double, and long: Double, completion: @escaping (FarmersMarketResults?, Error?) -> Void) {
-        let urlString = "https://search.ams.usda.gov/farmersmarkets/v1/data.svc/locSearch?lat=\(lat)&lng=\(long)"
+    func getLocation(from latitude: Double, and longitude: Double, completion: @escaping (FarmersMarketResults?, Error?) -> Void) {
+        let urlString = "https://search.ams.usda.gov/farmersmarkets/v1/data.svc/locSearch?lat=\(latitude)&lng=\(longitude)"
         guard let url = URL(string: urlString) else { return }
         print(urlString)
         let dataTask = URLSession.shared.dataTask(with: url) { (data, _, error) in
@@ -64,7 +63,7 @@ final class MarketController {
         dataTask.resume()
     }
     
-    func fetchIdFromFarmersMarketResults(with id: String, completion: @escaping (MarketDetails?, Error?) -> ()) {
+    func fetchIdFromFarmersMarketResults(with id: String, completion: @escaping (MarketDetails?, Error?) -> Void) {
         let urlString = idURL + id
         print(urlString)
         guard let url = URL(string:urlString ) else { return }

@@ -11,19 +11,20 @@ import MapKit
 
 final class MarketAnnotation: NSObject, MKAnnotation {
     
-    var marketDetail: Details
-    var marketID: MarketIdentifier
-    var lat: Double?
-    var lon: Double?
+    let marketDetail: Details
+    let marketID: MarketIdentifier
+    var latitude: Double?
+    var longitude: Double?
     var title: String?
     
     var coordinate: CLLocationCoordinate2D
-    init(marketDetails: Details, marketID: MarketIdentifier = MarketIdentifier(), lat: Double = 0.0, lon: Double = 0.0) {
+    // Make sure to give the MarketIdentifier a default initializer becuase you wont always need it
+    init(marketDetails: Details, marketID: MarketIdentifier = MarketIdentifier(), latitude: Double = 0.0, longitude: Double = 0.0) {
         self.marketDetail = marketDetails
         self.marketID = marketID
-        self.lat = lat
-        self.lon = lon
-        self.coordinate = CLLocationCoordinate2D(latitude: lat, longitude: lon)
+        self.latitude = latitude
+        self.longitude = longitude
+        self.coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
     }
     
 }
