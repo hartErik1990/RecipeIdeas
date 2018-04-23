@@ -29,6 +29,7 @@ final class AddRecipeDetailViewController: ShiftableViewController,  UINavigatio
     private let imagePicker = UIImagePickerController()
     private var editButton = UIBarButtonItem()
     private var saveButton = UIBarButtonItem()
+    @IBOutlet weak var shareButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -150,6 +151,7 @@ final class AddRecipeDetailViewController: ShiftableViewController,  UINavigatio
         }
     }
     @objc private func editButtonTapped() {
+        
         navigationItem.rightBarButtonItem = saveButton
         titleTextView.isEditable = true
         ingredientsTextView.isEditable = true
@@ -192,6 +194,7 @@ final class AddRecipeDetailViewController: ShiftableViewController,  UINavigatio
     }
     
     @IBAction func shareButtonTapped(_ sender: Any) {
+        shareButton.pulsate()
         let shareVC = UIActivityViewController(activityItems: ["Title:", titleTextView.text, addRecipeImage.image, "Ingredients:", ingredientsTextView.text, "Directions:", directionsTextView.text], applicationActivities: nil)
         shareVC.popoverPresentationController?.sourceView = self.view
         self.present(shareVC, animated: true, completion: nil)

@@ -17,6 +17,7 @@ final class DetailViewController: UIViewController, CLLocationManagerDelegate {
     weak var marketDetails: Details?
     weak var marketID: MarketIdentifier?
     
+    @IBOutlet weak var farmersMarketImage: UIImageView!
     @IBOutlet weak var getDirectionsButton: UIButton!
     @IBOutlet weak private var addressLabel: PaddingLabel!
     @IBOutlet weak private var scheduleLabel: PaddingLabel!
@@ -29,17 +30,11 @@ final class DetailViewController: UIViewController, CLLocationManagerDelegate {
         super.viewDidLoad()
         radishLinkButton.isEnabled = false
         clManager.delegate = self
-        setupGetDirectionsButton()
+        setupGetDirectionsButtonAndFarmersMarketImage()
         updateViews()
         view.backgroundColor = .white
         UINavigationBar.appearance().backgroundColor = view.backgroundColor
     }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        
-    }
-    
 
     private func updateViews() {
         
@@ -57,7 +52,6 @@ final class DetailViewController: UIViewController, CLLocationManagerDelegate {
         farmersMarketTitleLabel.titleView = imageView
         addressLabel.text = marketDetails?.Address
         scheduleLabel.text = formattedScheduleLabel?.replacingOccurrences(of: "    ", with: "If there is no information provided for the Schedule, please click on the radish so the Farmers Market can show more information")
-        print(scheduleLabel.text)
         productsTextView.text = marketDetails?.Products?.replacingOccurrences(of: "; ", with: "\n")
         if productsTextView.text == "" && (scheduleLabel.text?.contains("If"))! {
             scheduleLabel.text = formattedScheduleLabel?
@@ -73,7 +67,9 @@ final class DetailViewController: UIViewController, CLLocationManagerDelegate {
             
         }
     }
+    
     @IBAction func radishLinkButtonTapped(_ sender: Any) {
+        radishLinkButton.pulsate()
         let urlString = "http://www.usdalocalfooddirectories.com/farmersmarketdirectoryupdate/FM_Portal_Public.aspx"
         if let url = URL(string: urlString) {
             UIApplication.shared.open(url as URL, options: [:], completionHandler: nil)
@@ -81,14 +77,17 @@ final class DetailViewController: UIViewController, CLLocationManagerDelegate {
     }
    
     
-    func setupGetDirectionsButton() {
+    func setupGetDirectionsButtonAndFarmersMarketImage() {
         getDirectionsButton.layer.cornerRadius = getDirectionsButton.frame.height/2
         getDirectionsButton.clipsToBounds = true
         getDirectionsButton.layer.borderWidth = 1
+        
+        farmersMarketImage.layer.cornerRadius = 12
+        farmersMarketImage.clipsToBounds = true
     }
 
     @IBAction private func addressButtonTapped(_ sender: Any) {
-        print("Button Tapped")
+        getDirectionsButton.pulsate()
         addressLabel.textColor = UIColor.black
 
         guard let marketResult = marketDetails?.GoogleLink?.replacingOccurrences( of:"[^0.0-9, -]", with: "", options: .regularExpression) else { return }

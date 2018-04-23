@@ -18,7 +18,7 @@ final class WinterViewController: UIViewController {
 
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        scrollView.setContentOffset(CGPoint(x: 0, y: -20), animated: false)
+        scrollView.setContentOffset(CGPoint(x: 0, y: -45), animated: false)
     }
 }
 

@@ -27,8 +27,12 @@ final class WhatsInSeasonViewController: UIViewController {
 }
 
 final class FindSeasonalRecipesViewController: UIViewController {
+    
+    @IBOutlet weak var letsGoButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        letsGoButton.pulsate()
     }
 }
 

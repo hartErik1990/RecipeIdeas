@@ -20,8 +20,7 @@ final class MapViewController: UIViewController, MKMapViewDelegate, UISearchBarD
     fileprivate var marketID: MarketIdentifier?
     fileprivate let clLocationManager = CLLocationManager()
     fileprivate let customImageView = UIImage(named: "AnnotationFarmet")
-    var marketResultsArray = [MarketIdentifier?]()
-    var detailsArray = [Details]()
+    fileprivate var marketResultsArray = [MarketIdentifier?]()
     
     fileprivate var searchButton: UIButton! = {
         let button = UIButton()
@@ -29,18 +28,23 @@ final class MapViewController: UIViewController, MKMapViewDelegate, UISearchBarD
         button.titleLabel?.textColor = .white
         button.backgroundColor = #colorLiteral(red: 0.01776420884, green: 0.1898277998, blue: 0.2863296866, alpha: 1)
         button.isHidden = true
+        button.pulsate()
         return button
     }()
-    func setupSearchButton() {
+    
+    private func setupSearchButton() {
+        searchButton.layer.cornerRadius = 15
+        searchButton.clipsToBounds = true
         mapView.addSubview(searchButton)
         searchButton.translatesAutoresizingMaskIntoConstraints = false
         let safeView = view.safeAreaLayoutGuide
         NSLayoutConstraint.activate([
             searchButton.centerXAnchor.constraint(equalTo: mapView.centerXAnchor),
-            searchButton.heightAnchor.constraint(equalToConstant: 40),
+            searchButton.heightAnchor.constraint(equalToConstant: 30),
             searchButton.widthAnchor.constraint(equalToConstant: 80),
             searchButton.bottomAnchor.constraint(equalTo: safeView.bottomAnchor, constant: -10)
             ])
+        
     }
     
     // MARK: - set up searchBar constraints
@@ -98,6 +102,7 @@ final class MapViewController: UIViewController, MKMapViewDelegate, UISearchBarD
         self.dismiss(animated: true)
     }
     
+    // MARK: - Views LifeCycles
     override func viewDidLoad() {
         super.viewDidLoad()
         setupSearchButton()
@@ -120,21 +125,24 @@ final class MapViewController: UIViewController, MKMapViewDelegate, UISearchBarD
     // Checks to see if there are two viewControllers in the view hierarchy and if not it sets it to nil
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
         if navigationController?.viewControllers.count != 2 {
             self.view = nil
         } else {
             print("This is doing its job correctly")
         }
         self.navigationController?.isNavigationBarHidden = false
-        
+    }
+    
+    // To make sure im not repeating code, i will create a helper function
+    private func clearMarketArrayAndHideSearchButton() {
+        marketResultsArray = []
+        searchButton.isHidden = false
+        mapView.removeAnnotations(mapView.annotations)
     }
     
     // Click on the Bookmark Button to get the persons location
     func searchBarBookmarkButtonClicked(_ searchBar: UISearchBar) {
-        marketResultsArray = []
-        searchButton.isHidden = false
-        mapView.removeAnnotations(mapView.annotations)
+        clearMarketArrayAndHideSearchButton()
         searchBar.resignFirstResponder()
         guard let locationValue: CLLocationCoordinate2D = clLocationManager.location?.coordinate else { return }
         print(locationValue)
@@ -148,11 +156,9 @@ final class MapViewController: UIViewController, MKMapViewDelegate, UISearchBarD
         }
     }
     
-    // searchs for Farmers markets through the Zipcode
+    // Searchs for Farmers markets through the Zipcode
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        marketResultsArray = []
-        searchButton.isHidden = false
-        mapView.removeAnnotations(mapView.annotations)
+        clearMarketArrayAndHideSearchButton()
         clLocationManager.delegate = nil
         mapView.showsUserLocation = false
         guard let searchBar = searchBarTextField else { return }
@@ -169,7 +175,6 @@ final class MapViewController: UIViewController, MKMapViewDelegate, UISearchBarD
         }
     }
     
-    
     // Loops through the results array and calls the function to
     private func getResultsAndErrorWithFetchCall(with results: FarmersMarketResults?, and error: Error?) {
         if let err = error { NSLog(err.localizedDescription, #function); noZipcodeFoundAlert(); return }
@@ -182,8 +187,6 @@ final class MapViewController: UIViewController, MKMapViewDelegate, UISearchBarD
                 DispatchQueue.main.async { [weak self] in
                     if let err = error { NSLog(err.localizedDescription, #function); self?.noZipcodeFoundAlert(); return }
                     guard let details = details, let marketDetails = details.marketdetails else { return }
-                    
-                    self?.detailsArray.append(marketDetails)
                     self?.changeAddressToCoordinates(details: marketDetails, marketID: result)
                     guard let annotations = self?.mapView.annotations else { return }
                     self?.mapView.showAnnotations(annotations, animated: true)
@@ -195,7 +198,7 @@ final class MapViewController: UIViewController, MKMapViewDelegate, UISearchBarD
     // checks the address and adds the annotation to the map
     private func changeAddressToCoordinates(details: Details, marketID: MarketIdentifier) {
         
-        guard let marketName = marketID.marketname, let products = details.Products else { return }
+        guard let marketName = marketID.marketname else { return }
         let annotation = MarketAnnotation(marketDetails: details, marketID: marketID)
         
         guard let marketResult = details.GoogleLink?.replacingOccurrences( of:"[^0.0-9, -]", with: "", options: .regularExpression) else { return }
@@ -218,7 +221,6 @@ final class MapViewController: UIViewController, MKMapViewDelegate, UISearchBarD
         annotation.coordinate = coordinates
         
         mapView.addAnnotation(annotation)
-        
     }
     
     //sets the onboard location to my hometown
@@ -257,59 +259,7 @@ final class MapViewController: UIViewController, MKMapViewDelegate, UISearchBarD
         alert.addAction(okAction)
         present(alert, animated: true, completion: nil)
     }
-    @objc func searchButtonTapped(_ sender: UIButton) {
-        //print(products)
-        //print(resultsArray)
-        mapView.removeAnnotations(mapView.annotations)
-        let alert = UIAlertController(title: "Search for Produce", message: "Search for local produce in your area", preferredStyle: .alert)
-        
-        var produceTextField = UITextField()
-        
-        alert.addTextField { (textField) in
-            textField.placeholder = "Enter here..."
-            produceTextField = textField
-        }
-        
-        let addAction = UIAlertAction(title: "Search", style: .default) { (action) in
-            for result in self.marketResultsArray {
-                guard let marketID = result?.id else { return }
-                MarketController.shared.fetchIdFromFarmersMarketResults(with: marketID, completion: { (details, error) in
-                    DispatchQueue.main.async { [weak self] in
-                        if let err = error { NSLog(err.localizedDescription, #function); self?.noZipcodeFoundAlert(); return }
-                        guard let details = details, let marketDetails = details.marketdetails else { return }
-                        
-                        let modifiedProductsArray = marketDetails.Products?.replacingOccurrences(of: ";", with: "").lowercased()
-                            .replacingOccurrences(of: ",", with: "")
-                        guard let productsArray = modifiedProductsArray?.components(separatedBy: " ") else { return }
-                        print(productsArray)
-                        
-                        //                    var searchTerm: String? = Nuts
-                        //                    searchTerm?.replacingOccurrences(of: ";", with: "")
-                        guard let text = produceTextField.text?.lowercased(), !text.isEmpty else { return }
-                        
-                        let strippedText = text.stripped
-                        
-                        let textArray = strippedText.components(separatedBy: " ")
-                        print(textArray)
-                        for singleText in textArray {
-                            if productsArray.contains(singleText) {
-                                self?.changeAddressToCoordinates(details: marketDetails, marketID: result!)
-                                guard let annotations = self?.mapView.annotations else { return }
-                                self?.mapView.showAnnotations(annotations, animated: true)
-                            }
-                        }
-                    }
-                })
-            }
-        }
-        
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        alert.addAction(addAction)
-        alert.addAction(cancelAction)
-        
-        searchButton.isHidden = true
-        present(alert, animated: true, completion: nil)
-    }
+    
 }
 
 extension MapViewController: CLLocationManagerDelegate {
@@ -389,11 +339,67 @@ extension MapViewController {
     }
 }
 
+extension MapViewController {
+    
+    // MARK: - SearchButton Function Clicked
+    
+    // Set up Search Buttons functionality and properties inside of the alertController
+    @objc fileprivate func searchButtonTapped(_ sender: UIButton) {
+        
+        mapView.removeAnnotations(mapView.annotations)
+        let alert = UIAlertController(title: "Search for Products", message: "Search for Local Products in your area", preferredStyle: .alert)
+        
+        var produceTextField = UITextField()
+        
+        alert.addTextField { (textField) in
+            textField.placeholder = "Enter here..."
+            produceTextField = textField
+        }
+        
+        let addAction = UIAlertAction(title: "Search", style: .default) { (action) in
+            for result in self.marketResultsArray {
+                guard let marketID = result?.id else { return }
+                MarketController.shared.fetchIdFromFarmersMarketResults(with: marketID, completion: { (details, error) in
+                    DispatchQueue.main.async { [weak self] in
+                        if let err = error { NSLog(err.localizedDescription, #function); self?.noZipcodeFoundAlert(); return }
+                        guard let details = details, let marketDetails = details.marketdetails else { return }
+                        
+                        let modifiedProductsArray = marketDetails.Products?.replacingOccurrences(of: ";", with: "").lowercased()
+                            .replacingOccurrences(of: ",", with: "")
+                        guard let productsArray = modifiedProductsArray?.components(separatedBy: " ") else { return }
+                        guard let text = produceTextField.text?.lowercased(), !text.isEmpty else { return }
+                        
+                        let modifiedText = text.onlyLowercasedAndWhiteSpace
+                        
+                        let textArray = modifiedText.components(separatedBy: " ")
+                        for singleText in textArray {
+                            if productsArray.contains(singleText) {
+                                self?.changeAddressToCoordinates(details: marketDetails, marketID: result!)
+                                guard let annotations = self?.mapView.annotations else { return }
+                                self?.mapView.showAnnotations(annotations, animated: true)
+                            }
+                            self?.searchButton.isHidden = true
+                        }
+                        if self?.mapView.annotations == nil {
+                            print("Blues and sadness")
+                        }
+                    }
+                })
+            }
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alert.addAction(addAction)
+        alert.addAction(cancelAction)
+        present(alert, animated: true, completion: nil)
+    }
+}
+
 extension String {
     
-    var stripped: String {
-        let okayChars = Set("abcdefghijklmnopqrstuvwxyz ")
-        return self.filter {okayChars.contains($0) }
+    var onlyLowercasedAndWhiteSpace: String {
+        let lowercasedAndWhiteSpace = Set("abcdefghijklmnopqrstuvwxyz ")
+        return self.filter {lowercasedAndWhiteSpace.contains($0) }
     }
 }
 
