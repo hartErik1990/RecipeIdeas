@@ -23,20 +23,30 @@ final class DetailViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak private var productsTextView: UITextView!
     @IBOutlet weak var titleOfFarmersMarketLabel: UILabel!
     @IBOutlet weak private var farmersMarketTitleLabel: UINavigationItem!
-
+    @IBOutlet weak var radishLinkButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        radishLinkButton.isEnabled = false
         clManager.delegate = self
         setupGetDirectionsButton()
         updateViews()
         view.backgroundColor = .white
         UINavigationBar.appearance().backgroundColor = view.backgroundColor
     }
+    
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         
     }
+    
+
     private func updateViews() {
+        
+        let formattedScheduleLabel = marketDetails?.Schedule?
+            .replacingOccurrences(of: ";<br> ", with: "")
+            .replacingOccurrences(of: ";", with: ", ")
+            .replacingOccurrences(of: "<br>", with: "")
         
         guard let newMarketName = marketID?.marketname else { return }
         let resultWithOutNumbers = newMarketName.index(newMarketName.startIndex, offsetBy: 4)
@@ -46,13 +56,30 @@ final class DetailViewController: UIViewController, CLLocationManagerDelegate {
         let imageView = UIImageView(image: titleOfImage)
         farmersMarketTitleLabel.titleView = imageView
         addressLabel.text = marketDetails?.Address
-        scheduleLabel.text = marketDetails?.Schedule?
-            .replacingOccurrences(of: ";<br> ", with: "")
-            .replacingOccurrences(of: ";", with: ", ")
-            .replacingOccurrences(of: "<br>", with: "")
-        
+        scheduleLabel.text = formattedScheduleLabel?.replacingOccurrences(of: "    ", with: "If there is no information provided for the Schedule, please click on the radish so the Farmers Market can show more information")
+        print(scheduleLabel.text)
         productsTextView.text = marketDetails?.Products?.replacingOccurrences(of: "; ", with: "\n")
+        if productsTextView.text == "" && (scheduleLabel.text?.contains("If"))! {
+            scheduleLabel.text = formattedScheduleLabel?
+                .replacingOccurrences(of: "    ", with:  "If there is no information provided for the Schedule or Products, please click on the radish so the Farmers Market can show more information")
+            radishLinkButton.isEnabled = true
+        } else if (scheduleLabel.text?.contains("If"))! {
+            radishLinkButton.isEnabled = true
+            productsTextView.text = marketDetails?.Products?.replacingOccurrences(of: "; ", with: "\n")
+            print(productsTextView.text)
+        } else if scheduleLabel.text == formattedScheduleLabel && productsTextView.text == "" {
+            productsTextView.text = marketDetails?.Products?
+                .replacingOccurrences(of: "", with: "If there is no information provided please click on the radish so the Farmers Market can show more information")
+            
+        }
     }
+    @IBAction func radishLinkButtonTapped(_ sender: Any) {
+        let urlString = "http://www.usdalocalfooddirectories.com/farmersmarketdirectoryupdate/FM_Portal_Public.aspx"
+        if let url = URL(string: urlString) {
+            UIApplication.shared.open(url as URL, options: [:], completionHandler: nil)
+        }
+    }
+   
     
     func setupGetDirectionsButton() {
         getDirectionsButton.layer.cornerRadius = getDirectionsButton.frame.height/2
@@ -61,6 +88,7 @@ final class DetailViewController: UIViewController, CLLocationManagerDelegate {
     }
 
     @IBAction private func addressButtonTapped(_ sender: Any) {
+        print("Button Tapped")
         addressLabel.textColor = UIColor.black
 
         guard let marketResult = marketDetails?.GoogleLink?.replacingOccurrences( of:"[^0.0-9, -]", with: "", options: .regularExpression) else { return }

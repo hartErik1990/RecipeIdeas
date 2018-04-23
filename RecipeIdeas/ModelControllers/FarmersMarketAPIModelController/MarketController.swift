@@ -42,7 +42,7 @@ final class MarketController {
     func getLocation(from latitude: Double, and longitude: Double, completion: @escaping (FarmersMarketResults?, Error?) -> Void) {
         let urlString = "https://search.ams.usda.gov/farmersmarkets/v1/data.svc/locSearch?lat=\(latitude)&lng=\(longitude)"
         guard let url = URL(string: urlString) else { return }
-        print(urlString)
+  
         let dataTask = URLSession.shared.dataTask(with: url) { (data, _, error) in
             if let err = error {
                 NSLog(err.localizedDescription)
@@ -65,7 +65,7 @@ final class MarketController {
     
     func fetchIdFromFarmersMarketResults(with id: String, completion: @escaping (MarketDetails?, Error?) -> Void) {
         let urlString = idURL + id
-        print(urlString)
+    
         guard let url = URL(string:urlString ) else { return }
         let dataTask = URLSession.shared.dataTask(with: url) { (data, _, error) in
             if let err = error {

@@ -13,12 +13,12 @@ final class WinterViewController: UIViewController {
     @IBOutlet weak private var scrollView: UIScrollView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        scrollView.setContentOffset(CGPoint(x: 0, y: -23), animated: false)
+        scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: false)
     }
 
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        scrollView.setContentOffset(CGPoint(x: 0, y: -23), animated: false)
+        scrollView.setContentOffset(CGPoint(x: 0, y: -20), animated: false)
     }
 }
 
