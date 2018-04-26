@@ -37,9 +37,9 @@
                                             <rect key="frame" x="8" y="8" width="304" height="84"/>
                                         </imageView>
                                         <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7e3-cS-cjG" customClass="CustomVisualEffect" customModule="RecipeIdeas" customModuleProvider="target">
-                                            <rect key="frame" x="23.5" y="72.5" width="51.5" height="24.5"/>
+                                            <rect key="frame" x="23.5" y="54.5" width="41.5" height="42.5"/>
                                             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="N3r-g7-fV0">
-                                                <rect key="frame" x="0.0" y="0.0" width="51.5" height="24.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="41.5" height="42.5"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             </view>
                                             <blurEffect style="light"/>
@@ -50,7 +50,7 @@
                                             </userDefinedRuntimeAttributes>
                                         </visualEffectView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0vn-Yk-Wq3" customClass="PaddingLabel" customModule="RecipeIdeas" customModuleProvider="target">
-                                            <rect key="frame" x="24" y="72.5" width="51.5" height="24.5"/>
+                                            <rect key="frame" x="24" y="54.5" width="41.5" height="42.5"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" relation="lessThanOrEqual" constant="60" id="ydE-Wf-g75"/>
                                             </constraints>
@@ -232,7 +232,7 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="821"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YLO-bZ-0kh">
-                                        <rect key="frame" x="0.0" y="-35" width="375" height="821"/>
+                                        <rect key="frame" x="0.0" y="-35" width="375" height="841"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FarmetMarket" translatesAutoresizingMaskIntoConstraints="NO" id="40V-Hu-3Nd">
                                                 <rect key="frame" x="15" y="46" width="345" height="190"/>
@@ -242,8 +242,9 @@
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TitleOfFarmersMarket" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9QC-Ku-6YD">
-                                                <rect key="frame" x="15" y="244" width="166.5" height="64"/>
+                                                <rect key="frame" x="15" y="244" width="290" height="64"/>
                                                 <constraints>
+                                                    <constraint firstAttribute="width" constant="290" id="3ZH-wB-fP3"/>
                                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="290" id="kp3-tc-xYj"/>
                                                     <constraint firstAttribute="height" constant="64" id="qBh-yx-5oY"/>
                                                 </constraints>
@@ -323,12 +324,13 @@
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rl7-qF-QhC">
-                                                <rect key="frame" x="132" y="804" width="111" height="30"/>
+                                                <rect key="frame" x="117.5" y="804" width="140" height="50"/>
                                                 <color key="backgroundColor" red="0.10588235294117647" green="0.18823529411764706" blue="0.43137254901960786" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="111" id="mo1-td-IhI"/>
-                                                    <constraint firstAttribute="height" constant="30" id="sZD-DD-hHq"/>
+                                                    <constraint firstAttribute="width" constant="140" id="mo1-td-IhI"/>
+                                                    <constraint firstAttribute="height" constant="50" id="sZD-DD-hHq"/>
                                                 </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                                 <state key="normal" title="Get Directions">
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
@@ -355,6 +357,7 @@
                                             <constraint firstItem="9QC-Ku-6YD" firstAttribute="top" secondItem="40V-Hu-3Nd" secondAttribute="bottom" constant="8" id="Phu-p7-d2E"/>
                                             <constraint firstItem="XNd-5g-Xoy" firstAttribute="leading" secondItem="YLO-bZ-0kh" secondAttribute="leading" constant="15" id="QNt-v6-wX9"/>
                                             <constraint firstAttribute="trailing" secondItem="TUz-Dc-4gO" secondAttribute="trailing" constant="15" id="XnV-Zb-6fI"/>
+                                            <constraint firstItem="TUz-Dc-4gO" firstAttribute="leading" secondItem="9QC-Ku-6YD" secondAttribute="trailing" constant="8" id="bIB-vK-hEt"/>
                                             <constraint firstItem="uwr-5T-KqL" firstAttribute="top" secondItem="Wrb-4O-gMc" secondAttribute="bottom" constant="8" id="c0u-zc-7jy"/>
                                             <constraint firstItem="Rl7-qF-QhC" firstAttribute="bottom" secondItem="YLO-bZ-0kh" secondAttribute="bottomMargin" constant="21" id="efI-Hl-rfp"/>
                                             <constraint firstItem="uwr-5T-KqL" firstAttribute="leading" secondItem="YLO-bZ-0kh" secondAttribute="leading" constant="15" id="hRT-DL-rhj"/>
@@ -389,6 +392,7 @@
                     <size key="freeformSize" width="375" height="830"/>
                     <connections>
                         <outlet property="addressLabel" destination="Wrb-4O-gMc" id="hys-dK-RaC"/>
+                        <outlet property="contentView" destination="YLO-bZ-0kh" id="ZQy-Bb-JME"/>
                         <outlet property="farmersMarketImage" destination="40V-Hu-3Nd" id="MCL-ZQ-sJM"/>
                         <outlet property="farmersMarketTitleLabel" destination="kfR-zJ-3Ad" id="W0b-a7-uBc"/>
                         <outlet property="getDirectionsButton" destination="Rl7-qF-QhC" id="THH-of-hvz"/>
@@ -443,16 +447,13 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="2740"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Tx-MF-R4e">
-                                        <rect key="frame" x="0.0" y="8" width="375" height="2784"/>
+                                        <rect key="frame" x="0.0" y="8" width="375" height="2794.5"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SpringProduce" translatesAutoresizingMaskIntoConstraints="NO" id="f4x-Ye-pOh">
-                                                <rect key="frame" x="9" y="70" width="356" height="533"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="533" id="kU8-2A-adH"/>
-                                                </constraints>
+                                                <rect key="frame" x="9" y="70" width="356" height="543.5"/>
                                             </imageView>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SpringRecipe" translatesAutoresizingMaskIntoConstraints="NO" id="gn5-lC-4f0">
-                                                <rect key="frame" x="9" y="611" width="356" height="2121"/>
+                                                <rect key="frame" x="9" y="621.5" width="356" height="2121"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" relation="lessThanOrEqual" constant="2121" id="Kpm-9E-Hze"/>
                                                 </constraints>
@@ -467,6 +468,7 @@
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
+                                            <constraint firstItem="f4x-Ye-pOh" firstAttribute="height" secondItem="5Tx-MF-R4e" secondAttribute="height" multiplier="533/2740" id="5l9-jg-hzY"/>
                                             <constraint firstItem="gn5-lC-4f0" firstAttribute="centerX" secondItem="5Tx-MF-R4e" secondAttribute="centerX" id="6ar-ER-PHB"/>
                                             <constraint firstItem="gn5-lC-4f0" firstAttribute="top" secondItem="f4x-Ye-pOh" secondAttribute="bottom" constant="8" id="6vb-Sq-KJ0"/>
                                             <constraint firstItem="f4x-Ye-pOh" firstAttribute="width" secondItem="5Tx-MF-R4e" secondAttribute="width" multiplier="0.95" id="EdJ-9D-bBz"/>
@@ -520,7 +522,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="2100"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aUg-RK-5P0" userLabel="ContentView">
-                                        <rect key="frame" x="0.0" y="-20" width="375" height="2066.5"/>
+                                        <rect key="frame" x="0.0" y="-20" width="375" height="2067"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TitleOfApp" translatesAutoresizingMaskIntoConstraints="NO" id="gbo-Ar-dYs">
                                                 <rect key="frame" x="144" y="5" width="86" height="71"/>
@@ -529,17 +531,16 @@
                                                 </constraints>
                                             </imageView>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="WinterProduce" translatesAutoresizingMaskIntoConstraints="NO" id="4J5-vq-VAt">
-                                                <rect key="frame" x="9" y="76" width="356" height="534.5"/>
+                                                <rect key="frame" x="9" y="76" width="356" height="535"/>
                                             </imageView>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="WinterRecipe" translatesAutoresizingMaskIntoConstraints="NO" id="SVu-xY-jPn">
-                                                <rect key="frame" x="9" y="618.5" width="356" height="1395"/>
+                                                <rect key="frame" x="9" y="619" width="356" height="1395"/>
                                             </imageView>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="4J5-vq-VAt" firstAttribute="top" secondItem="gbo-Ar-dYs" secondAttribute="bottom" id="L2M-K2-eK1"/>
                                             <constraint firstItem="gbo-Ar-dYs" firstAttribute="height" secondItem="aUg-RK-5P0" secondAttribute="height" multiplier="72/2100" id="OdF-ex-y72"/>
-                                            <constraint firstItem="SVu-xY-jPn" firstAttribute="trailing" secondItem="4J5-vq-VAt" secondAttribute="trailing" id="Q5N-M8-dx2"/>
                                             <constraint firstItem="SVu-xY-jPn" firstAttribute="top" secondItem="4J5-vq-VAt" secondAttribute="bottom" constant="8" symbolic="YES" id="UCB-9V-RsA"/>
                                             <constraint firstItem="4J5-vq-VAt" firstAttribute="height" secondItem="aUg-RK-5P0" secondAttribute="height" multiplier="544/2100" id="cOA-xb-JpT"/>
                                             <constraint firstItem="gbo-Ar-dYs" firstAttribute="top" secondItem="aUg-RK-5P0" secondAttribute="top" constant="5" id="ekn-7M-AVV"/>
@@ -548,6 +549,7 @@
                                             <constraint firstItem="SVu-xY-jPn" firstAttribute="width" secondItem="aUg-RK-5P0" secondAttribute="width" multiplier="0.95" id="nT0-ky-nPd"/>
                                             <constraint firstAttribute="bottom" secondItem="SVu-xY-jPn" secondAttribute="bottom" constant="53" id="oWo-k6-wz5"/>
                                             <constraint firstItem="SVu-xY-jPn" firstAttribute="centerX" secondItem="aUg-RK-5P0" secondAttribute="centerX" id="oaL-8x-i8F"/>
+                                            <constraint firstItem="4J5-vq-VAt" firstAttribute="leading" secondItem="SVu-xY-jPn" secondAttribute="leading" id="uJG-lC-3YW"/>
                                             <constraint firstItem="4J5-vq-VAt" firstAttribute="width" secondItem="aUg-RK-5P0" secondAttribute="width" multiplier="0.95" id="vdR-0H-JxY"/>
                                         </constraints>
                                     </view>
@@ -972,7 +974,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </textView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ingredients:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tsY-va-gG8">
-                                                <rect key="frame" x="15" y="342" width="115.5" height="45"/>
+                                                <rect key="frame" x="15" y="342" width="86" height="45"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="45" id="NjE-3M-EO9"/>
                                                 </constraints>
@@ -993,7 +995,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </textView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Directions:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OLL-16-UT1">
-                                                <rect key="frame" x="16" y="583" width="105" height="25"/>
+                                                <rect key="frame" x="16" y="583" width="77.5" height="25"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="25" id="Ba3-MB-p6a"/>
                                                 </constraints>
@@ -1014,7 +1016,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </textView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xkU-eK-xpR">
-                                                <rect key="frame" x="15" y="276" width="47.5" height="26"/>
+                                                <rect key="frame" x="15" y="276" width="32" height="26"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="26" id="XkW-dr-dD7"/>
                                                     <constraint firstAttribute="height" constant="26" id="aRY-gc-aDV"/>
@@ -1110,8 +1112,8 @@
         <image name="FallProduce1" width="345" height="665"/>
         <image name="FallRecipe" width="346" height="1670"/>
         <image name="FarmetMarket" width="345" height="190"/>
-        <image name="FindFarmersMarketImage" width="375" height="667"/>
-        <image name="FindSeasonalRecipesImage" width="375" height="667"/>
+        <image name="FindFarmersMarketImage" width="125" height="222"/>
+        <image name="FindSeasonalRecipesImage" width="125" height="222"/>
         <image name="LetsGoButton" width="210" height="43"/>
         <image name="MainViewImage" width="375" height="667"/>
         <image name="OnboardingScreen" width="375" height="667"/>
@@ -1123,7 +1125,7 @@
         <image name="SummerProduce" width="345" height="641"/>
         <image name="SummerRecipe" width="346" height="1108"/>
         <image name="TitleOfApp" width="85" height="27"/>
-        <image name="WhatsInSeasonImage" width="375" height="667"/>
+        <image name="WhatsInSeasonImage" width="125" height="222"/>
         <image name="WinterProduce" width="345" height="544"/>
         <image name="WinterRecipe" width="346" height="1417"/>
         <image name="chef-hat" width="32" height="32"/>

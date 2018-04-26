@@ -29,7 +29,7 @@ final class AddRecipeListTableViewController: UITableViewController, NSFetchedRe
         do {
             try fetchedResultsController.performFetch()
         } catch {
-            print("Error preformFetch failed :\(error.localizedDescription)")
+            NSLog("Error preformFetch failed :\(error.localizedDescription)")
         }
     }
 

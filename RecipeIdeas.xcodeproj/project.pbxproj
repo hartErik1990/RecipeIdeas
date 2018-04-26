@@ -7,12 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		44068E35208E983F008F3427 /* websitesAndIDs.json in Resources */ = {isa = PBXBuildFile; fileRef = 44068E34208E983F008F3427 /* websitesAndIDs.json */; };
+		44068E5A208EEAFC008F3427 /* MarketWebsiteDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44068E59208EEAFC008F3427 /* MarketWebsiteDictionary.swift */; };
+		44068E5D208EEBDB008F3427 /* MarketWebsiteDictionaryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44068E5C208EEBDB008F3427 /* MarketWebsiteDictionaryController.swift */; };
 		44254E4D2044C30A005B45BC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44254E4C2044C30A005B45BC /* AppDelegate.swift */; };
 		44254E522044C30A005B45BC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 44254E502044C30A005B45BC /* Main.storyboard */; };
 		44254E542044C30A005B45BC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 44254E532044C30A005B45BC /* Assets.xcassets */; };
 		44254E572044C30A005B45BC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 44254E552044C30A005B45BC /* LaunchScreen.storyboard */; };
-		44282CDD20531078001D6800 /* Quotes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44282CDC20531078001D6800 /* Quotes.swift */; };
-		44282CE320531115001D6800 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44282CE220531115001D6800 /* OnboardingViewController.swift */; };
 		442CA0B42047236100823035 /* AddRecipeListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442CA0B32047236100823035 /* AddRecipeListTableViewController.swift */; };
 		442CA0BC20472F7100823035 /* RecipeIdeas.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 442CA0BA20472F7100823035 /* RecipeIdeas.xcdatamodeld */; };
 		443326CA20637EBF00F16885 /* CustomTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443326C920637EBF00F16885 /* CustomTextView.swift */; };
@@ -45,14 +46,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		44068E34208E983F008F3427 /* websitesAndIDs.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = websitesAndIDs.json; sourceTree = "<group>"; };
+		44068E59208EEAFC008F3427 /* MarketWebsiteDictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketWebsiteDictionary.swift; sourceTree = "<group>"; };
+		44068E5C208EEBDB008F3427 /* MarketWebsiteDictionaryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketWebsiteDictionaryController.swift; sourceTree = "<group>"; };
 		44254E492044C30A005B45BC /* RecipeIdeas.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RecipeIdeas.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		44254E4C2044C30A005B45BC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		44254E512044C30A005B45BC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		44254E532044C30A005B45BC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		44254E562044C30A005B45BC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		44254E582044C30A005B45BC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		44282CDC20531078001D6800 /* Quotes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quotes.swift; sourceTree = "<group>"; };
-		44282CE220531115001D6800 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		442CA0B32047236100823035 /* AddRecipeListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRecipeListTableViewController.swift; sourceTree = "<group>"; };
 		442CA0BB20472F7100823035 /* RecipeIdeas.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RecipeIdeas.xcdatamodel; sourceTree = "<group>"; };
 		443326C920637EBF00F16885 /* CustomTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextView.swift; sourceTree = "<group>"; };
@@ -101,6 +103,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		44068E58208EEA8A008F3427 /* FarmersMarketWebsiteJSONModel */ = {
+			isa = PBXGroup;
+			children = (
+				44068E59208EEAFC008F3427 /* MarketWebsiteDictionary.swift */,
+			);
+			path = FarmersMarketWebsiteJSONModel;
+			sourceTree = "<group>";
+		};
+		44068E5B208EEBB4008F3427 /* FarmersMarketWebsiteJSONModelController */ = {
+			isa = PBXGroup;
+			children = (
+				44068E5C208EEBDB008F3427 /* MarketWebsiteDictionaryController.swift */,
+			);
+			path = FarmersMarketWebsiteJSONModelController;
+			sourceTree = "<group>";
+		};
 		44254E402044C30A005B45BC = {
 			isa = PBXGroup;
 			children = (
@@ -139,7 +157,7 @@
 		44254E602044C7A7005B45BC /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				44282CDE20531082001D6800 /* QuotesFromChefs */,
+				44068E58208EEA8A008F3427 /* FarmersMarketWebsiteJSONModel */,
 				442CA0B920472DDA00823035 /* AddRecipeModel */,
 				44A46B992056123C0041E812 /* FarmersMarketAPIModel */,
 			);
@@ -161,6 +179,7 @@
 		44254E662044C8D5005B45BC /* ModelControllers */ = {
 			isa = PBXGroup;
 			children = (
+				44068E5B208EEBB4008F3427 /* FarmersMarketWebsiteJSONModelController */,
 				442CA0B720472DAB00823035 /* AddRecipeModelController */,
 				44A46B9C2056128E0041E812 /* FarmersMarketAPIModelController */,
 			);
@@ -180,23 +199,15 @@
 			children = (
 				44254E532044C30A005B45BC /* Assets.xcassets */,
 				44254E552044C30A005B45BC /* LaunchScreen.storyboard */,
+				44068E34208E983F008F3427 /* websitesAndIDs.json */,
 				44254E582044C30A005B45BC /* Info.plist */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		44282CDE20531082001D6800 /* QuotesFromChefs */ = {
-			isa = PBXGroup;
-			children = (
-				44282CDC20531078001D6800 /* Quotes.swift */,
-			);
-			path = QuotesFromChefs;
-			sourceTree = "<group>";
-		};
 		44282CE42053111A001D6800 /* MainViewController */ = {
 			isa = PBXGroup;
 			children = (
-				44282CE220531115001D6800 /* OnboardingViewController.swift */,
 				444AEBF7208508EF00719C94 /* FarmetPageViewController.swift */,
 				444AEBF52085063800719C94 /* OnboardingViewControllers.swift */,
 			);
@@ -382,6 +393,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				44068E35208E983F008F3427 /* websitesAndIDs.json in Resources */,
 				44254E572044C30A005B45BC /* LaunchScreen.storyboard in Resources */,
 				44254E542044C30A005B45BC /* Assets.xcassets in Resources */,
 				44568B1D2085743B006FEC87 /* Bellerose.ttf in Resources */,
@@ -396,20 +408,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				44282CE320531115001D6800 /* OnboardingViewController.swift in Sources */,
 				44837DEE2048AC8C0075EF62 /* AddRecipeTableViewCell.swift in Sources */,
 				449D4FEC2047492400F72651 /* AddRecipeListTVC+Extensions.swift in Sources */,
 				44A46BA820576F680041E812 /* CustomUILabel.swift in Sources */,
 				444AEBF8208508EF00719C94 /* FarmetPageViewController.swift in Sources */,
 				44A46B9E205612BF0041E812 /* MarketController.swift in Sources */,
 				444AEC19208533EB00719C94 /* SeasonalPageController.swift in Sources */,
-				44282CDD20531078001D6800 /* Quotes.swift in Sources */,
 				442CA0B42047236100823035 /* AddRecipeListTableViewController.swift in Sources */,
 				44A46BA1205613320041E812 /* MapViewController.swift in Sources */,
 				444AEBF62085063800719C94 /* OnboardingViewControllers.swift in Sources */,
+				44068E5D208EEBDB008F3427 /* MarketWebsiteDictionaryController.swift in Sources */,
 				44A46B98205611EE0041E812 /* FarmersMarket.swift in Sources */,
 				449D4FEE20474AD500F72651 /* AddRecipeDetailViewController.swift in Sources */,
 				44CB226A20599AA200C50F7F /* CustomImage.swift in Sources */,
+				44068E5A208EEAFC008F3427 /* MarketWebsiteDictionary.swift in Sources */,
 				44C4AD3E2047382900752CFF /* Extensions+Convenience.swift in Sources */,
 				44C4AD3C204737A500752CFF /* CoreDataStack.swift in Sources */,
 				44837E132049B28C0075EF62 /* ColorScheme.swift in Sources */,

@@ -9,26 +9,34 @@
 import Foundation
 
 // Head of the JSON Dictionary
-final class FarmersMarketResults: Codable {
+final class FarmersMarketResults: Decodable {
+
     var results: [MarketIdentifier]?
 }
 
 // Gets the MarketID
-final class MarketIdentifier: Codable {
+struct MarketIdentifier: Decodable, Equatable {
     var id: String?
     var marketname: String?
 }
 
 // Calls the Market Details
-final class MarketDetails: Codable {
+struct MarketDetails: Decodable {
     var marketdetails: Details?
 }
 
 // Gets the details from the farmers markets
-final class Details: Codable {
-    var Address: String?
-    var GoogleLink: String?
-    var Products: String?
-    var Schedule: String?
+struct Details: Decodable {
+    let address: String
+    let googleLink: String
+    var products: String?
+    var schedule: String?
+    
+    enum CodingKeys: String, CodingKey {
+        case address = "Address"
+        case googleLink = "GoogleLink"
+        case products = "Products"
+        case schedule = "Schedule"
+    }
 }
 

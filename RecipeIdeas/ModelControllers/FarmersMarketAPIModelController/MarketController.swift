@@ -65,16 +65,13 @@ final class MarketController {
     
     func fetchIdFromFarmersMarketResults(with id: String, completion: @escaping (MarketDetails?, Error?) -> Void) {
         let urlString = idURL + id
-    
         guard let url = URL(string:urlString ) else { return }
         let dataTask = URLSession.shared.dataTask(with: url) { (data, _, error) in
             if let err = error {
                 completion(nil, err)
                 return
             }
-            
             guard let data = data else { return }
-            
             do {
                 let marketDetails = try JSONDecoder().decode(MarketDetails.self, from: data)
                 completion(marketDetails, nil)
