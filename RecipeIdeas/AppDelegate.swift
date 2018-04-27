@@ -22,7 +22,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UIApplication.shared.statusBarStyle = .lightContent
         
         CFMobile.initialize("y9C5JQ3eU5cHdepj");
+        let defaults = UserDefaults.standard
         
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        var vc: UIViewController
+        
+        if UserDefaults.standard.value(forKey: "firstTimeKey") == nil {
+            // show oboarding screen
+            vc = storyboard.instantiateViewController(withIdentifier: "FarmetPageViewController")
+        } else {
+            vc = storyboard.instantiateInitialViewController()!
+        }
+        
+        self.window?.rootViewController = vc
+        self.window?.makeKeyAndVisible()
         return true
     }
     

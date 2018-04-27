@@ -336,9 +336,12 @@ extension MapViewController {
         }
         
         let addAction = UIAlertAction(title: "Search", style: .default) { (action) in
+            if produceTextField.text?.isEmpty == true {
+                return self.noResultsAlert()
+            }
             self.mapView.removeAnnotations(self.mapView.annotations)
             for result in self.marketIdentifiers {
-                var lastResult = result
+                let lastResult = result
                 guard let marketID = result?.id else { return }
                 MarketController.shared.fetchIdFromFarmersMarketResults(with: marketID, completion: { (details, error) in
                     DispatchQueue.main.async { [weak self] in
@@ -348,7 +351,7 @@ extension MapViewController {
                         let modifiedProductsArray = marketDetails.products?.replacingOccurrences(of: ";", with: "").lowercased()
                             .replacingOccurrences(of: ",", with: "")
                         guard let productsArray = modifiedProductsArray?.components(separatedBy: " ") else { return }
-                        guard let searchTerm = produceTextField.text?.lowercased(), !searchTerm.isEmpty else { return }
+                        guard let searchTerm = produceTextField.text?.lowercased() else { return }
                         
                         let lowercasedSearchTerm = searchTerm.onlyLowercasedAndWhiteSpace
                         

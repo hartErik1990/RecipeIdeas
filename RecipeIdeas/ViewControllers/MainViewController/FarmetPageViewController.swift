@@ -47,8 +47,13 @@ final class FarmetPageViewController: UIPageViewController, UINavigationBarDeleg
         return .lightContent
     }
     
+    let defaults = UserDefaults.standard
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        
         navigationController?.isNavigationBarHidden = true
         delegate = self
         dataSource = self
