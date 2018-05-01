@@ -14,21 +14,21 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
-
+    static let shared = AppDelegate()
+    let key = "firstTimeKey"
+    let defaults = UserDefaults.standard
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
      
         UIApplication.shared.statusBarStyle = .lightContent
         
         CFMobile.initialize("y9C5JQ3eU5cHdepj");
-        let defaults = UserDefaults.standard
         
         self.window = UIWindow(frame: UIScreen.main.bounds)
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        var vc: UIViewController
+        weak var vc: UIViewController?
         
-        if UserDefaults.standard.value(forKey: "firstTimeKey") == nil {
+        if defaults.value(forKey: self.key) == nil {
             // show oboarding screen
             vc = storyboard.instantiateViewController(withIdentifier: "FarmetPageViewController")
         } else {

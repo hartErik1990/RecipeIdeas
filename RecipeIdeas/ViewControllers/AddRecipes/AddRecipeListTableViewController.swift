@@ -58,6 +58,7 @@ final class AddRecipeListTableViewController: UITableViewController, NSFetchedRe
         let appTitleImage = UIImage(named: "TitleOfApp")
         let imageView = UIImageView(image: appTitleImage)
         navigationItemTitle.titleView = imageView
+        navigationItemTitle.largeTitleDisplayMode = .always
         guard let width = navigationController?.navigationBar.bounds.width, let height = navigationController?.navigationBar.bounds.height else { return }
         let visualEffectView   = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
         visualEffectView.frame = CGRect(x: 0, y: -44, width: width, height: height * 2)

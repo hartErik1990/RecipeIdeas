@@ -36,7 +36,8 @@ final class FindSeasonalRecipesViewController: UIViewController {
     }
     
     @IBAction func letsGoButtonTapped(_ sender: Any) {
-        UserDefaults.standard.set(true, forKey: "firstTimeKey")
+       AppDelegate.shared.defaults.set(true, forKey: AppDelegate.shared.key)
+        
         performSegue(withIdentifier: "toTabBarVC", sender: self)
     }
     

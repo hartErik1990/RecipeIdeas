@@ -93,13 +93,11 @@ final class MapViewController: UIViewController, MKMapViewDelegate, UISearchBarD
         mapView.showsUserLocation = false
         searchBarSearchButtonClicked(searchBarTextField)
         searchBarTextField.resignFirstResponder()
-        dismiss(animated: true)
     }
     
     @objc fileprivate func cancelButtonTapped() {
         searchBarTextField.resignFirstResponder()
         searchBarTextField.text = ""
-        dismiss(animated: true)
     }
     
     // MARK: - Views LifeCycles
@@ -162,11 +160,6 @@ final class MapViewController: UIViewController, MKMapViewDelegate, UISearchBarD
         clLocationManager.delegate = nil
         mapView.showsUserLocation = false
         guard let searchBar = searchBarTextField else { return }
-        searchBar.inputAccessoryView = keyboardToolbar
-        searchBar.keyboardType = .numberPad
-        searchBar.delegate = self
-        searchBar.placeholder = "Enter your zip..."
-        dismiss(animated: true, completion: nil)
         if let searchTerm = searchBar.text {
             MarketController.shared.fetchFarmersMarketData(with: searchTerm) { [weak self] (results, error) in
                 self?.getResultsAndErrorWithFetchCall(with: results, and: error)
@@ -188,6 +181,7 @@ final class MapViewController: UIViewController, MKMapViewDelegate, UISearchBarD
                     guard let details = details, let marketDetails = details.marketdetails else { return }
                     self?.changeAddressToCoordinates(details: marketDetails, marketID: result)
                     guard let annotations = self?.mapView.annotations else { return }
+                    print(self?.mapView.annotations.count)
                     self?.mapView.showAnnotations(annotations, animated: true)
                 }
             })
@@ -224,7 +218,7 @@ final class MapViewController: UIViewController, MKMapViewDelegate, UISearchBarD
     //sets the onboard location to my hometown
     private func setMyHomeTownPosition() {
         DispatchQueue.main.async { [weak self] in
-            let visibleRegion = MKCoordinateRegionMakeWithDistance(CLLocationCoordinate2D(latitude: 38.729613, longitude: -120.798601), 100000, 100000)
+            let visibleRegion = MKCoordinateRegionMakeWithDistance(CLLocationCoordinate2D(latitude: 38.729613, longitude: -120.798601), 700000, 700000)
             self?.mapView.setRegion((self?.mapView.regionThatFits(visibleRegion))!, animated: true)
         }
     }
@@ -360,7 +354,6 @@ extension MapViewController {
                         for singleWord in searchTermArray {
                             if productsArray.contains(singleWord) {
                                 self?.changeAddressToCoordinates(details: marketDetails, marketID: result!)
-                                self?.mapView.showAnnotations(annotations, animated: true)
                             }
                         }
                         if self?.mapView.showsUserLocation == true {
@@ -383,6 +376,7 @@ extension MapViewController {
                             }
                         }
                     }
+                    self.mapView.showAnnotations(self.mapView.annotations, animated: true)
                 })
             }
         }

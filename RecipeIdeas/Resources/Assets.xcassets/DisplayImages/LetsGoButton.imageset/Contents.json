@@ -2,16 +2,16 @@
   "images" : [
     {
       "idiom" : "universal",
+      "filename" : "LetsGoButton.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "radish@2x.png",
+      "filename" : "LetsGoButton1.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "radish@3x.png",
       "scale" : "3x"
     }
   ],

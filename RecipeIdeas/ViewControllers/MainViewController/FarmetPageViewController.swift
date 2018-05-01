@@ -39,7 +39,7 @@ final class FarmetPageViewController: UIPageViewController, UINavigationBarDeleg
         pageControl.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             pageControl.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            pageControl.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -UIScreen.main.bounds.height*(1/3) + 20)
+            pageControl.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -UIScreen.main.bounds.height*(1/3) + 30)
             ])
     }
     
