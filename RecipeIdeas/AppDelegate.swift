@@ -8,8 +8,6 @@
 
 import UIKit
 
-//import CloudflareMobileSDK
-
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -22,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
      
         UIApplication.shared.statusBarStyle = .lightContent
         
-        CFMobile.initialize("y9C5JQ3eU5cHdepj");
+      
         
         self.window = UIWindow(frame: UIScreen.main.bounds)
         let storyboard = UIStoryboard(name: "Main", bundle: nil)

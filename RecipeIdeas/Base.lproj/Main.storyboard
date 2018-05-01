@@ -542,8 +542,6 @@
                     <size key="freeformSize" width="375" height="2100"/>
                     <connections>
                         <outlet property="scrollView" destination="GUE-Av-E5p" id="OQD-ox-bvO"/>
-                        <outlet property="winterProduceImage" destination="4J5-vq-VAt" id="V9h-VR-Ey8"/>
-                        <outlet property="winterRecipeImage" destination="SVu-xY-jPn" id="rjr-yl-dPP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6X3-kX-AV2" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -669,11 +667,28 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FindSeasonalRecipesImage" translatesAutoresizingMaskIntoConstraints="NO" id="ElI-Oc-6b4">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                                <rect key="frame" x="-9" y="0.0" width="329" height="480"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6vL-bN-OeU">
-                                <rect key="frame" x="97" y="354" width="125" height="26"/>
-                                <state key="normal" image="LetsGoButton"/>
+                            <button opaque="NO" contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6vL-bN-OeU" customClass="CustomButton" customModule="RecipeIdeas" customModuleProvider="target">
+                                <rect key="frame" x="78.5" y="332" width="153" height="45"/>
+                                <color key="backgroundColor" red="0.016614795593201524" green="0.12638624303678184" blue="0.19325910408579672" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="OBc-bw-yw5"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Let's Go"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="22.5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="0.29999999999999999"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" cocoaTouchSystemColor="darkTextColor"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="letsGoButtonTapped:" destination="I0v-UD-Qnk" eventType="touchUpInside" id="bdL-nM-hWc"/>
                                     <segue destination="lMB-Oy-zuJ" kind="presentation" identifier="toTabBarVC" modalTransitionStyle="crossDissolve" id="Q7h-b3-WJk"/>
@@ -684,10 +699,11 @@
                         <constraints>
                             <constraint firstItem="ElI-Oc-6b4" firstAttribute="top" secondItem="MGh-XA-2fB" secondAttribute="top" id="Ilc-Gv-acs"/>
                             <constraint firstItem="Aud-d1-AJk" firstAttribute="trailing" secondItem="ElI-Oc-6b4" secondAttribute="trailing" id="KMr-8s-Ivs"/>
-                            <constraint firstItem="ElI-Oc-6b4" firstAttribute="leading" secondItem="Aud-d1-AJk" secondAttribute="leading" id="h1Y-IZ-K3B"/>
-                            <constraint firstItem="6vL-bN-OeU" firstAttribute="bottom" secondItem="Aud-d1-AJk" secondAttribute="bottom" constant="-100" id="mb1-gL-BXt"/>
-                            <constraint firstItem="6vL-bN-OeU" firstAttribute="centerX" secondItem="ElI-Oc-6b4" secondAttribute="centerX" id="u6g-Au-zsJ"/>
+                            <constraint firstItem="ElI-Oc-6b4" firstAttribute="leading" secondItem="Aud-d1-AJk" secondAttribute="leading" constant="-9" id="h1Y-IZ-K3B"/>
+                            <constraint firstItem="6vL-bN-OeU" firstAttribute="bottom" secondItem="Aud-d1-AJk" secondAttribute="bottom" constant="-103" id="mb1-gL-BXt"/>
+                            <constraint firstItem="6vL-bN-OeU" firstAttribute="centerX" secondItem="ElI-Oc-6b4" secondAttribute="centerX" constant="-0.5" id="u6g-Au-zsJ"/>
                             <constraint firstAttribute="bottom" secondItem="ElI-Oc-6b4" secondAttribute="bottom" id="va6-gB-yNT"/>
+                            <constraint firstItem="6vL-bN-OeU" firstAttribute="width" secondItem="MGh-XA-2fB" secondAttribute="width" multiplier="4.3/9" id="w2A-fG-ohB"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Aud-d1-AJk"/>
                     </view>
@@ -1091,7 +1107,6 @@
         <image name="FarmetMarket" width="345" height="190"/>
         <image name="FindFarmersMarketImage" width="375" height="667"/>
         <image name="FindSeasonalRecipesImage" width="375" height="667"/>
-        <image name="LetsGoButton" width="125" height="26"/>
         <image name="MainViewImage" width="375" height="667"/>
         <image name="PhotoImage" width="345" height="263"/>
         <image name="Radish" width="36" height="54"/>
